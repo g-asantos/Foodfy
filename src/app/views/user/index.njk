@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles.css">
+
+    </head>
+
+    <body>
+        <header>
+            <h1>Foodfy</h1>
+            <a href="/sobre" class='about'>Sobre</a>
+            <a href="/receitas" class='recipes'>Receitas</a>
+            <a href="/chefs" class='chefs_link'>Chefs</a>
+            <form action="/receitas" method='GET'>
+                <input type="text" name='filter' placeholder='  Buscar uma receita'>
+                <button type="submit">Buscar</button>
+            </form>
+        </header>
+
+        <section>
+            <div class='container'>
+                <strong>As melhores receitas</strong>
+                <p>Aprenda a construir os melhores pratos com receitas criadas por profissinais do mundo inteiro.</p>
+                <img src="\chef.png" alt="Chef"/>
+            </div>
+
+            <strong>Mais acessadas</strong>
+            <div class="recipeContainerOriginal">
+               
+                {% for recipe in recipes %}
+                    
+
+                        <div class='card' id='{{recipe.id}}'>
+
+                            <div class='card__image-container'>
+                            {%for file in files%}
+                                {%for i in range(0, 1)%}
+                                {%if recipe.id == file[i].recipe_id%}
+                                <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{recipe.title}}"/>
+                                {%endif%}
+                                {%endfor%}
+                            {%endfor%}
+                            </div>
+
+                            <div class='card__content'>
+                                <p>{{recipe.title}}</p>
+                            </div>
+                            <div class='card__info'>
+                                <p>por
+                                    {{recipe.chef_name}}</p>
+                            </div>
+                        </div>
+
+                        
+                    {%endfor%}
+                </div>
+            </section>
+
+            <footer id='third'>
+                <p>Todos os direitos reservados, receitas Foodfy.</p>
+            </footer>
+
+        </body>
+
+    </html>

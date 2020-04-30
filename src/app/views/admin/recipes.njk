@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+
+        <head>
+            <title>Foodfy</title>
+            <link rel="stylesheet" href="/styles.css">
+        </head>
+        <header id='adHead'>
+            <h1 style='color:white'>Foodfy</h1>
+        </header>
+
+        <h2 class='manage'>Gerenciar receitas</h2>
+        
+        <div class="recipeContainer">
+            
+            {%for item in items%}
+                <div class='card'>
+                    <div class='card__image-container'>
+                       
+                            <img src="{{item.imageURL}}" alt="{{item.title}}"/>
+                        
+                    </div>
+                    <div class="infoContainer">
+                    <div class='card__content'>
+                        <p>{{item.title}}</p>
+                    </div>
+                    <div class='card__info'>
+                        <p>por
+                            {{item.author}}</p>
+                    </div>
+                    <a href="/admin/recipes/{{item.index}}" class="see">Visualizar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+
+    <script src="/scripts.js"></script>
+</body>
+
+</html>

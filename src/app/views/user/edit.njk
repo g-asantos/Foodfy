@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles2.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <header>
+            <h1 style='margin-bottom:26px'>Foodfy</h1>
+        </header>
+
+        <section>
+            <div class="adminContainer">
+                <h1>Editando receita</h1>
+                <button type='submit' class='edit master' form='rewrite'>Salvar Receita</button>
+                <button type='submit' class='edit master' form='delete' id='delButton'>Deletar Receita</button>
+            </div>
+
+            
+
+
+
+            <form id='rewrite' method='POST' action="/user?_method=PUT" enctype='multipart/form-data'>
+                
+                <div style='font-weight: bold'>Imagem da receita</div>
+
+                    <div id="photos-upload">
+                    
+                        <input 
+                        type="file" 
+                        name="photos"
+                        id="photos-input" 
+                        onchange='PhotosUpload.handleFileInput(event)'
+                        accept='image/*' 
+                        multiple>
+                        <span>
+                            <i class="material-icons">add</i>
+                        </span>
+                    
+                    </div>
+                    
+                    <div id="photos-preview">
+                        {%if files %}
+                            {%for file in files%}
+                                <div class="photo" id={{file.id}}>
+                                    <img src="{{file.src}}{{file.name}}" alt="{{file.name}}">
+                                    <i 
+                                    class="material-icons"
+                                    onclick='PhotosUpload.removeOldPhoto(event)' >close</i>
+                                </div>
+
+                            {%endfor%}
+                        <input type="hidden" name="removed_files">
+                        {%endif%}
+                    </div>
+                    
+                </div>
+
+                
+                <div class='item'>
+                    <div>Título</div>
+                    <input type="text" name="title" id="" value='{{recipe.title}}'>
+                </div>
+                <div class='item'>
+                    <div>Chef</div>
+                    <select name="chef" class='chefSelect'>
+                        {%for chef in chefsOptions%}
+                            <option value="{{chef.id}}" {% if  recipe.chef_id == chef.id %} selected="selected" {% endif %}>
+                                {{chef.name}}
+                            </option>
+                            {%endfor%}
+                    </select>
+                    </div>
+
+                <div class='item' id="ingredients">
+                    <div>Ingredientes</div>
+                    <div class="ingredient">
+                        {% for ingredient in recipe.ingredients%}
+                        <input type="text[]" name="ingredients[]" value="{{ingredient}}"/>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+
+                <div class='item' id="preparation">
+                    <div>Modo de preparo</div>
+                    <div class="prepare">
+                        {% for preparation in recipe.preparation%}
+                        <input type="text[]" name="preparation[]" value="{{preparation}}"/>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button type="button" class="add-step">Adicionar novo passo</button>
+
+                <div class='item' id='info'>
+                    <div>Informações adicionais</div>
+                    <textarea name="information" form='rewrite' cols="144" rows="10">{{recipe.information}}</textarea>
+                    
+                </div>
+                <input type="hidden" name="id" value={{recipe.id}}>
+            </form>
+            <form id='delete'method="POST" action='/user?_method=DELETE'>
+            
+            
+            <input type="hidden" name="id" value={{recipe.id}}>
+            </form>
+
+            <script src="/photosUpload.js"></script>
+            <script src="/scripts.js"></script>
+        </body>
+
+    </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles2.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <header>
+            <h1 style='margin-bottom:26px'>Foodfy</h1>
+        </header>
+
+        <section>
+            <div class="adminContainer">
+                <h1>Criando receita</h1>
+                <button class='edit' type="submit" form='creation'>Salvar receita</button>
+            </div>
+
+            <form id='creation' method='POST' action="/user" enctype='multipart/form-data'>
+
+                <div class='item'>
+                    <div>Imagem da receita</div>
+
+                    <div id="photos-upload">
+                        <input 
+                        type="file" 
+                        name="photos" 
+                        id="photos-input" 
+                        onchange='PhotosUpload.handleFileInput(event)'
+                        accept='image/*' 
+                        multiple>
+                        <span>
+                            <i class="material-icons">add</i>
+                        </span>
+                        
+                    </div>
+                    <div id="photos-preview"></div>
+
+                </div>
+                <div class='item'>
+                    <div>Título</div>
+                    <input type="text" name="title" id="">
+                </div>
+                <div class='item'>
+                    <div>Chef</div>
+                    <select name="chef" class='chefSelect'>
+                        {%for chef in chefsOptions%}
+                            <option value="{{chef.id}}">
+                                {{chef.name}}
+                            </option>
+                            {%endfor%}
+                        </select>
+                    </div>
+
+                    <div class='item' id="ingredients">
+                        <div>Ingredientes</div>
+                        <div class="ingredient">
+                            <input type="text[]" name="ingredients[]" value=""/>
+                        </div>
+                    </div>
+                    <button type="button" class="add-ingredient">Adicionar novo ingrediente</button>
+
+                    <div class='item' id="preparation">
+                        <div>Modo de preparo</div>
+                        <div class="prepare">
+                            <input type="text[]" name="preparation[]" value=""/>
+                        </div>
+                    </div>
+                    <button type="button" class="add-step">Adicionar novo passo</button>
+
+                    <div class='item' id='info'>
+                        <div>Informações adicionais</div>
+                        <textarea name="information" form='creation' cols="144" rows="10">{{recipe.information}}</textarea>
+                    </div>
+
+                </form>
+
+                <script src="/photosUpload.js"></script>
+                <script src="/scripts.js"></script>
+            </body>
+
+        </html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles2.css">
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1 style='margin-bottom:26px'>Foodfy</h1>
+        </header>
+
+        <section>
+            <div class="adminContainer">
+                <h1>Editando chef</h1>
+                <button type='submit' class='edit master' form='rewrite'>Salvar Chef</button>
+                <button type='submit' class='edit master' form='delete' id='delButton'>Deletar Chef</button>
+            </div>
+
+            
+
+
+
+            <form id='rewrite' method='POST' action="/admin?_method=PUT" enctype='multipart/form-data'>
+                
+                <div class='item'>              
+                    <div>Nome</div>
+                    <input type="text" name="name" id="{{chef.id}}" value='{{chef.name}}'>
+                </div>
+                <div class='item'>
+                    <div>Avatar</div>
+                    <div class="photo-upload-chef">
+                    <input type="url" name="file_id" id='{{chef.file_id}}' class='photo-old-input' value='{{chef.path}}' readonly>
+                    <div id="photo-upload-chef">
+                        <input 
+                        type="file" 
+                        name="photos" 
+                        id="photo-input-chef" 
+                        onchange='chefsPhotosUpload.handleFileInput(event)'
+                        accept='image/*' 
+                        >
+                        
+                        <p>Enviar Avatar</p>
+                        <div id="photos-chef-preview"></div>
+                    </div>
+                </div>
+                {%if chefs.file_id != 0%}
+                            <div class='photo' id='{{chef.file_id}}'></div>
+
+                {%endif%}
+                <input type="hidden" name="id" value={{chef.id}}>
+                </div>
+            </form>
+            <form id='delete'method="POST" action='/admin?_method=DELETE'>
+            
+            <input type="hidden" name="file_id" value={{chef.file_id}}>
+            <input type="hidden" name="id" value={{chef.id}}>
+            </form>
+
+            </section>
+            <script src="/photosUpload.js"></script>
+            
+        </body>
+
+    </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+
+        <head>
+            <title>Foodfy</title>
+            <link rel="stylesheet" href="/styles.css">
+        </head>
+        <header>
+            <h1>Foodfy</h1>
+            <a href="/sobre" class='about'>Sobre</a>
+            <a href="/receitas" class='recipes'>Receitas</a>
+            <a href="/chefs"  class='chefs_link' style="font-weight: bold;">Chefs</a>
+        </header>
+
+        <div class="userchefContainer">
+            {%for chef in chefs%}
+                <div class='card' id='{{chef.id}}'>
+                    <div class='card__image-container_chef'>
+                        {%for file in files%}
+                            {%for i in range(0,1)%}
+                            {%if file.id == chef[i].file_id%}
+                        <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{chef.name}}"/>
+                            {%endif%}
+                            {%endfor%}
+                        {%endfor%}
+                    </div>
+                    <div class='card__content_chef'>
+                        <p>{{chef.name}}</p>
+                       <a href="/admin/{{chef.id}}" class="see">Visualizar</a>
+                    
+                    </div>
+                    
+                </div>
+            {% endfor %}
+              
+        </div>
+        <footer id='second'>
+            <p>Todos os direitos reservados, receitas Foodfy.</p>
+        </footer>
+    </div>
+
+    <script src="/scripts.js"></script>
+</body>
+
+</html>

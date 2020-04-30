@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles2.css">
+
+    </head>
+    <header id='adHead'>
+        <div class="admin_head">
+            <h1 style='color:white'>Foodfy</h1>
+            <a href="/receitas" class='recipes_admin'>RECEITAS</a>
+            <a href="/chefs" class='chefs_link_admin'>CHEFS</a>
+        </div>
+    </header>
+    <body>
+
+        <section>
+
+            <div class='card' id='{{item.id}}'>
+                <div class="adminContainer">
+                    <h1>Chef:
+                        {{chef.name}}</h1>
+                    <a href="{{chef.id}}/edit" class='edit'>Editar Chef</a>
+                </div>
+
+                <div class='card__content__chef__admin'>
+                    <img src="http://localhost:5000/images/{{chefFiles}}" alt="{{chef.title}}"/>
+                    <div class="chef__details">
+                    <p id='card__info__chef__name'>{{chef.name}}</p>
+                    <p id='card__info__chef'>{{chef.total_recipes}}
+                        receitas</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <strong>Receitas</strong>
+        <div class="recipeContainerOriginal">
+
+            {% for recipe in recipesMade %}
+                {%if chef.id == recipe.chef_id %}
+                    <div class='card_admin_recipe' id='{{recipe.id}}'>
+                         {%for i in range(loop.revindex0 , loop.revindex )%}
+                         
+                        <div class='card__image-container_recipe'>
+                               
+                                <img src="http://localhost:5000/images/{{recipeFiles[(recipesMade.length - 1) - i ]}}" alt="{{recipe.title}}"/>
+                                
+                            </div>
+                                
+                             {%endfor%}
+                            <div class='card__content_recipe'>
+                                <p>{{recipe.title}}</p>
+                                <div class='card__info_recipe'>
+                                    <p>por
+                                        {{chef.name}}</p>
+                                    <div class="card__button_recipe">
+                                        <a href="/receitas/{{recipe.id}}">Visualizar</a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+
+        </section>
+
+        <footer>
+            <p>Todos os direitos reservados, receitas Foodfy.</p>
+        </footer>
+
+        <script src="/scripts.js"></script>
+    </body>
+
+</html>

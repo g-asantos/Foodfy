@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+
+        <head>
+            <title>Foodfy</title>
+            <link rel="stylesheet" href="/styles2.css">
+        </head>
+        <header id='adHead'>
+            <div class="admin_head">
+            <h1 style='color:white'>Foodfy</h1>
+            <a href="/receitas" class='recipes_admin'>RECEITAS</a>
+            <a href="/chefs" class='chefs_link_admin'>CHEFS</a>
+            </div>
+        </header>
+
+        <h2 class='manage'>Gerenciar receitas</h2>
+          <div class="recipeContainerManager">
+                {% for recipe in recipesMade %}
+                    <div class='card_admin_recipe_manager' id='{{recipe.id}}'>
+                        <div class='card__image-container_recipe'>
+                            <img src="{{recipe.image}}" alt="{{recipe.title}}"/>
+                        </div>
+
+                        <div class='card__content_recipe_manager'>
+                            <p>{{recipe.title}}</p>
+                            <div class='card__info_recipe'>
+                            <p>por
+                                {{chef.name}}</p>
+                                <div class="card__button_recipe">
+                            <a href="/receitas/{{recipe.id}}">Visualizar</a>
+                        </div>
+                        </div>
+                        </div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+        
+        
+    </div>
+
+    <script src="/scripts.js"></script>
+</body>
+
+</html>

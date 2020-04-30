@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles2.css">
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1 style='margin-bottom:26px'>Foodfy</h1>
+        </header>
+
+        <section>
+            <div class="adminContainer">
+                <h1>Criando chef</h1>
+                <button class='edit' type="submit" form='creation'>Salvar chef</button>
+            </div>
+
+            <form id='creation' method='POST' action="/admin" enctype='multipart/form-data'>
+                
+ 
+                <div class='item'>
+                    <div>Nome</div>
+                    <input type="text" name="name" id="">
+                </div>
+                <div class='item'>
+                    <div>Avatar</div>
+                    <div id="photo-upload-chef">
+                        <input 
+                        type="file" 
+                        name="photos" 
+                        id="photo-input-chef" 
+                        onchange='chefsPhotosUpload.handleFileInput(event)'
+                        accept='image/*' 
+                        >
+                        
+                        <p>Enviar Avatar</p>
+                        <div id="photos-chef-preview"></div>
+                    </div>
+                </div>
+               
+                
+            <script src="/photosUpload.js"></script>
+        </body>
+
+    </html>
