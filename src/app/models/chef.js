@@ -90,6 +90,7 @@ module.exports = {
     recipesMade(callback) {
         db.query(`SELECT title,recipes.id,chef_id FROM recipes
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+        ORDER BY recipes.created_at DESC
         `, function (err, results) {
             if (err) throw `Database error! ${err}`
 

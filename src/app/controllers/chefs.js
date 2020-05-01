@@ -25,13 +25,18 @@ module.exports = {
         Chef.all(async function(chefs){
             let files = []
             for(let i = 0; i < chefs.length; i++){
-            let results = await db.query(`SELECT * FROM files WHERE files.id = $1`, [chefs[i].file_id] )
+            let results = await db.query(`SELECT files.name,files.id FROM files
+            JOIN chefs ON files.id = chefs.file_id
+
+            
+            
+            
+            WHERE files.id= $1`, [chefs[i].file_id] )
             
             files.push(results.rows)
             }
             
-    
-    
+           
             return res.render('user/chefs', { chefs, files })
           })  
             
@@ -50,7 +55,7 @@ module.exports = {
                 let recipeFiles = []
                 for(let i = 0; i < recipes.length; i++){
                     let fileResults = await db.query(`SELECT * FROM recipes  
-                    WHERE recipes.chef_id = $1`, [recipes[i].chef_id])
+                    WHERE recipes.chef_id = $1 ORDER BY recipes.created_at DESC`, [recipes[i].chef_id])
                     let recipe_filesResults = await db.query(`SELECT * FROM recipe_files WHERE recipe_files.recipe_id = $1`,
                     [fileResults.rows[i].id])
 
@@ -71,7 +76,7 @@ module.exports = {
                 }
                 
                
-               
+                
                 return res.render('admin/chefShow', { chef, recipesMade: recipes, chefFiles, recipeFiles })
                 
             })
