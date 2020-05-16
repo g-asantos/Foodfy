@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles/UserStyles.css">
+
+    </head>
+
+    <body>
+
+        {%include 'parts/header.njk'%}
+
+        <section>
+            <div class="adminContainer">
+                <h1>Bem vindo
+                    {{user.name}}</h1>
+                <button type='submit' class='edit master' form='rewrite' id='save'>Salvar</button>
+            </div>
+
+            <form id='rewrite' method='POST' action="profile?_method=PUT">
+                <div class="infoContainer">
+                    <div class='item'>
+                        <div>Nome</div>
+                        <input type="text" name="name" placeholder='Digite seu nome completo' value='{{user.name}}' readonly>
+                    </div>
+
+                    <div class='item'>
+                        <div>Email</div>
+                        <input type="email" name="email"  placeholder='Digite o email' value='{{user.email}}' readonly>
+                    </div>
+                    <div class='item' id='pass'>
+                        <div>Senha</div>
+                        <input type="password" name="password" placeholder='Digite a senha'>
+                    </div>
+
+                    </div>
+                    <input type="hidden" name="id" value={{user.id}}>
+                </form>
+
+                {%include 'parts/messages.njk'%}
+            </body>
+
+        </html>

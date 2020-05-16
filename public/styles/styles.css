@@ -11,7 +11,7 @@
 html {
     overflow-x: hidden;
 }   
-header h1 {
+header img {
     font-weight: normal;
     margin-left: 231px;
     margin-top: 36.1px;
@@ -373,3 +373,4 @@ left: 230px;
 top: 150px;
 margin-bottom: 20px;
 }
+

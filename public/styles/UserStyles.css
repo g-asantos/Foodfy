@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+*{
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body {
+    width: 1200px;
+    height: 1000px;
+}
+html {
+    overflow-x: hidden;
+}   
+
+
+/* HEADER */
+
+.header{
+    
+    background: #111111;
+    
+    width: 1600px;
+    height: 80px;
+}
+
+.header .headerContainer{
+    display: grid;
+    grid-template-columns: 200px 125px 125px 125px;
+    position: absolute;
+    left: 231px;
+    top: 27px;
+    
+}
+
+.header .headerContainer img{
+
+    color: #FFFFFF;
+}
+.header .headerContainer a{
+    margin-top: 7px;
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #999999;
+    text-align: left;
+    text-decoration: none;
+}
+
+.header .headerContainer form button{
+    position: absolute;
+    left: 1100px;
+    text-transform: uppercase;
+    bottom: 0.2px;
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+    border: 0;
+    background-color: #111111;
+}
+
+
+/* create User */
+
+section{
+    position: relative;
+    left: 230px;
+    top: 55px;
+}
+
+
+section .adminContainer{
+    display: grid;
+    grid-template-columns: 800px 139px 139px;
+    grid-gap: 16px;
+}
+
+section .adminContainer h1{
+    font-family: Helvetica;
+    font-size: 24px;
+    color: #111111;
+    font-weight: bold;
+}
+
+section .adminContainer .save{
+    background: #6558C3;
+    border-radius: 4px;
+    border: 1px solid #6558C3;
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+}
+
+section .adminContainer .cancel{
+    background: #8A8A8A;
+    border-radius: 4px;
+    border: 1px solid #8A8A8A;
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+}
+
+button {
+    cursor: pointer;
+}
+
+form .infoContainer{
+    display: grid;
+    grid-template-columns: 660px 500px;
+    position: relative;
+    top: 67px;
+}
+
+
+form .infoContainer .item div{
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #111111;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form .infoContainer .item input{
+    width: 450px;
+    height: 49px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+form .isAdmin {
+    position: absolute;
+    top: 92px;
+    
+}
+
+form .isAdmin .item {
+    display: grid;
+    grid-template-columns: 20px 200px;
+    align-items: center;
+}
+
+form .isAdmin .item div {
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #111111;
+    font-weight: bold;
+    margin-bottom: initial;
+}
+
+form .isAdmin .item input#checkbox{
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: initial;
+    height: initial;
+}
+
+::placeholder{
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #999999;
+    padding: 20px 15px;
+}
+
+
+.messages-error {
+    display: flex;
+    align-items: center;
+    background: #DC4747;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 344px;
+    height: 135px;
+    margin-top: 10px;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 115px;
+    position: absolute;
+    left: 930px;
+    top: -40px;
+}
+
+
+.messages-success{
+    background:  #01B12A;;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 344px;
+    height: 135px;
+    margin-top: 10px;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 50px;
+    position: absolute;
+    left: 930px;
+    top: -40px;
+}
+/* pagina de login */
+
+.login-header {
+    position: absolute;
+    left: 653px;
+    top: 35px;
+}
+
+.loginContainer {
+    position: relative;
+    right: 130px;
+    top: 213px;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 24px;
+    color: #111111;
+    text-align: center;
+}
+
+.logonContainer{
+    display: grid;
+    grid-template-rows: 94px 94px;
+    position: relative;
+    top: 277px;
+    left: 210px;
+}
+
+.logonContainer p{
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #111111;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.logonContainer input{
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 0 4px 0 4px 0 4px 0;
+    width: 500px;
+    height: 49px;
+}
+
+button.acess{
+    background: #6558C3;
+    border-radius: 4px;
+    border: 1px solid #6558C3;
+    width: 134px;
+    height: 37px;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+
+a.lostPassword{
+    font-family: Helvetica;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    color: #969696;
+}
+
+div.buttonContainer{
+    display: grid;
+    grid-template-columns: 370px 400px;
+    position: relative;
+    top: 300px;
+    left: 205px;
+    align-items: center;
+}
+
+div.buttonContainer button{
+    margin-bottom: 10px;
+}
+
+/* edit */
+
+.adminContainer button{
+    width: 139px;
+    height: 37px;
+    border-radius: 4px;
+}
+
+.adminContainer button#delButton{
+    background: #DC4747;
+    border: 1px solid #DC4747;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.adminContainer button#save{
+    background: #7159C1;
+    border: 1px solid #7159C1;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+form .infoContainer #pass{
+    margin-top: 20px;
+}
+
+/* list */
+ 
+
+.listContainer {
+    display: grid;
+    margin-top: 72px;
+}
+
+.allUsers{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.listContainer .detailsContainer div:first-child {
+    margin-bottom: 4px;
+}
+
+.listContainer .detailsContainer .item div{
+    font-family: Helvetica;
+font-size: 18px;
+color: #111111;
+font-weight: bold;
+}
+
+.listContainer .detailsContainer .item2 div{
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #777777;
+}
+
+
+
+.listContainer .buttons {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 65px 65px;
+}
+
+.listContainer .buttons a:first-of-type{
+    margin-right: 16px;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 14px;
+    color: #6558C3;
+    text-decoration: none;
+}
+
+.listContainer .buttons form button{
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 14px;
+    color: #F55A5A;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background: transparent;
+    position: relative;
+    bottom: 2px;
+}
+
+/* forgotten password */
+
+.buttonContainer button#forgot{
+    position: relative;
+    bottom: 80px;
+    
+}
+
+/* reset password */
+
+.resetContainer{
+    display: grid;
+    grid-template-rows: 123px 123px 123px;
+    position: relative;
+    top: 277px;
+    left: 210px;
+}
+
+.resetContainer input {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    
+    width: 500px;
+    height: 49px;
+}
+
+.resetContainer p {
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #111111;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+button#reset.acess{
+    position: relative;
+    bottom: 40px;
+}

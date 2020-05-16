@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles/UserStyles.css">
+
+    </head>
+
+    <body>
+
+        {%include 'parts/header.njk'%}
+
+        <section>
+            <div class="adminContainer">
+                <h1>Criar Usuário</h1>
+                <button class='save' type="submit" form='creation'>Salvar</button>
+                <button class='cancel'>
+                 <a href="/users/admin/users" style='text-decoration: none; color: #FFFFFF; font-weight: bold;'>   Cancelar</a>
+                </button>
+            </div>
+
+            <form id='creation' method='POST' action="/users/register">
+                
+                
+                {% include 'user/layout.njk'%}
+                
+                    {%include 'parts/messages.njk'%}
+                </div>
+                </form>
+            </section>
+            <script src="/scripts.js"></script>
+            </body>
+        
+
+
+
+        </html>

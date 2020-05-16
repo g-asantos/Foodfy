@@ -64,7 +64,7 @@ module.exports = {
 
             
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
 
 
@@ -76,7 +76,8 @@ module.exports = {
         return db.query(`DELETE FROM recipe_files
         WHERE recipe_files.id = $1
         RETURNING file_id`, [id])
-    }
+    },
+    
 
 
 }

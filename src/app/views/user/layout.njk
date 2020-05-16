@@ -1,0 +1,22 @@
+<div class="infoContainer">
+    <div class='item'>
+        <div>Nome</div>
+        <input type="text" name="name" id="" placeholder='Digite seu nome completo' value='{{user.name}}'>
+    </div>
+
+    <div class='item'>
+        <div>Email</div>
+        <input type="email" name="email" id="" placeholder='Digite o email' value='{{user.email}}'
+        >
+    </div>
+    <div class="isAdmin">
+                    <div class='item'>
+                        {%if user.is_admin == true%}
+                        <input type="checkbox" name="admin" id="checkbox" checked>
+                        {%else%}
+                        <input type="checkbox" name="admin" id="checkbox">
+                        {%endif%}
+                        <div>Administrador</div>
+                    </div>
+
+    </div>

@@ -22,7 +22,7 @@ module.exports = {
             }
             
             	
-            return res.render('user/index', { recipes, files})
+            return res.render('recipes/index', { recipes, files})
         
 
             
@@ -52,7 +52,7 @@ module.exports = {
                     }
                     
                         
-                    return res.render('user/receitas', { recipes, files, filter})
+                    return res.render('recipes/receitas', { recipes, files, filter})
                 
         
                     
@@ -77,8 +77,7 @@ module.exports = {
                     
                     }
                     
-                        
-                    return res.render('user/receitas', { recipes, files})
+                    return res.render('recipes/receitas', { recipes, files})
                 
         
                     
@@ -102,8 +101,8 @@ module.exports = {
             }))
 
             
-
-            return res.render('user/detalhes', { recipe, files })
+            
+            return res.render('recipes/detalhes', { recipe, files })
         })
 
 
@@ -111,7 +110,7 @@ module.exports = {
     create(req, res) {
 
         Recipe.chefsSelectOptions(function (options) {
-            return res.render('user/create', { chefsOptions: options })
+            return res.render('recipes/create', { chefsOptions: options })
         })
 
 
@@ -130,7 +129,9 @@ module.exports = {
             return res.send('Please, send at least one image')
 
 
-        let results = await Recipe.create(req.body)
+        let results = await Recipe.create({
+            ...req.body,
+            user_id: req.session.userId})
         const recipeId = results.rows[0].id
 
 
@@ -151,12 +152,13 @@ module.exports = {
             File.join({ recipe_id: resultsRecipeId[0], file_id: fileId[i].rows[0].id })
         }
 
+       
 
 
 
-
-
-        return res.redirect(`/receitas/${recipeId}`)
+        
+        return res.redirect(`/users/admin/users`) 
+       
 
 
 
@@ -165,7 +167,8 @@ module.exports = {
     async edit(req, res) {
         let recipe = Recipe.find(req.params.id, function (recipe) {
             if (!recipe) return res.send('Recipe not found!')
-
+            
+            req.session.recipeCreator = recipe.user_id
             Recipe.chefsSelectOptions(async function (options) {
                 let results = await Recipe.files(recipe.id)
                 let files = results.rows
@@ -174,7 +177,12 @@ module.exports = {
                     ...file,
                     src: `${req.protocol}://${req.headers.host}/images/`
                 }))
-                return res.render('user/edit', { recipe, chefsOptions: options, files })
+                
+                
+                req.session.save(() => {
+                    return res.render('recipes/edit', { recipe, chefsOptions: options, files  })
+                })
+                
             })
 
 
@@ -229,45 +237,55 @@ module.exports = {
         }
 
         await Recipe.update(req.body)
-
-
-        return res.redirect(`/receitas`)
+        
+        req.session.save(() => {
+            return res.redirect(`/receitas/${req.body.id}`)
+        })
+        
     },
     async delete(req, res) {
 
+        try{
+            const file_id = await Recipe.delete(req.body.id, async (results) => {
+             
+                for(let i = 0; i < results.length; i++){
+                     
+                    
+                    const result = await db.query(`SELECT * FROM files
+                    WHERE id = $1`, [results[i].file_id])
+                    
+                    let destination = await Promise.resolve(result)
+                    
+                    
+    
+    
+                    fs.unlinkSync(destination.rows[0].path)
+                }
+    
+    
+                await Recipe.finalDelete(req.body.id)
 
+                for (let i = 0; i < results.length; i++) {
+                    
+    
+                    let deleteFile = await db.query(`DELETE FROM files WHERE id = $1`, [results[i].file_id])
+                }
+                
+            })
 
-        const file_id = await Recipe.delete(req.body.id, async (results) => {
             
-
-            for(let i = 0; i < results.length; i++){
-                 
-                
-                const result = db.query(`SELECT * FROM files
-                WHERE id = $1`, [results[i].file_id])
-                
-                let destination = await Promise.resolve(result)
-                
-                
-
-
-                fs.unlinkSync(destination.rows[0].path)
-            }
-
-
-
-            for (let i = 0; i < results.length; i++) {
-                
-
-                let deleteFile = db.query(`DELETE FROM files WHERE id = $1`, [results[i].file_id])
-            }
-
+        req.session.save(() => {
+            return res.redirect(`/users/admin/users`)   
         })
+        }catch(err){
+            console.error(err)
+        }
+       
+       
+        
+        
 
-        const recipeDelete = await db.query(`DELETE FROM recipes WHERE id = $1`, [req.body.id])
-
-
-        return res.redirect(`/`)
+        
     },
 
 

@@ -3,14 +3,14 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles2.css">
+        <link rel="stylesheet" href="/styles/styles2.css">
 
     </head>
 
     <body>
 
         <header>
-            <h1 style='margin-bottom:26px'>Foodfy</h1>
+            <h1 id='detailFix'><img src="/Foodfy.png" alt="" ></h1>
         </header>
 
         <section>
@@ -24,7 +24,7 @@
 
 
 
-            <form id='rewrite' method='POST' action="/admin?_method=PUT" enctype='multipart/form-data'>
+            <form id='rewrite' method='POST' action="/chefs?_method=PUT" enctype='multipart/form-data'>
                 
                 <div class='item'>              
                     <div>Nome</div>
@@ -54,7 +54,7 @@
                 <input type="hidden" name="id" value={{chef.id}}>
                 </div>
             </form>
-            <form id='delete'method="POST" action='/admin?_method=DELETE'>
+            <form id='delete'method="POST" action='/chefs?_method=DELETE'>
             
             <input type="hidden" name="file_id" value={{chef.file_id}}>
             <input type="hidden" name="id" value={{chef.id}}>

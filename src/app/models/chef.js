@@ -53,12 +53,13 @@ module.exports = {
             callback(results.rows[0])
         })
     },
-    update(id,{file_id , name}) {
+    update(id,{file_id , name}, callback) {
         const query = `
             UPDATE chefs SET
             file_id=($1),
             name=($2)
             WHERE id = $3
+            
         `
 
         const values = [
@@ -71,7 +72,7 @@ module.exports = {
         db.query(query, values, function (err, results) {
             if (err) throw `Database error! ${err}`
 
-
+            return callback
         })
 
 

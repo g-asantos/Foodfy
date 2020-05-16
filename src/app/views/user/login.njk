@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        <link rel="stylesheet" href="/styles/UserStyles.css">
+
+    </head>
+
+    <body>
+
+        <div class="login-header">
+
+            <img src="/logo.png" alt="">
+
+        </div>
+
+        <section>
+        
+            <div class="loginContainer">
+                <h1>Iniciar Sessão</h1>
+
+            </div>
+            {%include 'parts/messages.njk'%}
+            <form id='creation' method='POST' action="/users/login">
+                <div class="logonContainer">
+                    <div class='item'>
+                        <p>Email</p>
+                        <input type="email" name="email" placeholder='Digite o email' value='{{user.email}}'>
+                    </div>
+
+                    <div class='item'>
+                        <p>Senha</p>
+                        <input type="password" name="password"  placeholder='Digite a senha' value=''>
+                        
+                    </div>
+                </div>
+                <div class="buttonContainer">
+                    <a href="./forgot-password" class='lostPassword'>Perdeu a senha?</a>
+                    <button class='acess' type="submit" form='creation'>Acessar</button>
+                </div>
+            </form>
+        </section>
+        
+        <script src="/scripts.js"></script>
+    </body>
+
+</html>

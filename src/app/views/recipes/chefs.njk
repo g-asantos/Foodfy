@@ -5,10 +5,10 @@
 
         <head>
             <title>Foodfy</title>
-            <link rel="stylesheet" href="/styles.css">
+            <link rel="stylesheet" href="/styles/styles.css">
         </head>
         <header>
-            <h1>Foodfy</h1>
+            <img src="/logo.png" alt="" class='logo'>
             <a href="/sobre" class='about'>Sobre</a>
             <a href="/receitas" class='recipes'>Receitas</a>
             <a href="/chefs"  class='chefs_link' style="font-weight: bold;">Chefs</a>
@@ -30,7 +30,7 @@
                     </div>
                     <div class='card__content_chef'>
                         <p>{{chef.name}}</p>
-                       <a href="/admin/{{chef.id}}" class="see">Visualizar</a>
+                       <a href="chefs/{{chef.id}}" class="see">Visualizar</a>
                     
                     </div>
                     

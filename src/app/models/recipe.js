@@ -25,8 +25,9 @@ module.exports = {
                 preparation,
                 information,
                 chef_id,
-                created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6)
+                created_at,
+                user_id
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id
             
             
@@ -37,7 +38,8 @@ module.exports = {
             data.preparation,
             data.information,
             data.chef,
-            date(Date.now()).iso
+            date(Date.now()).iso,
+            data.user_id
         ]
 
 
@@ -123,5 +125,10 @@ module.exports = {
         WHERE recipe_files.recipe_id = $1
         `, [id])
     },
+    async finalDelete(id){
+        let deleteRecipe = await db.query(`DELETE FROM recipes WHERE id = $1`, [id])
+            
+        await Promise.resolve(deleteRecipe)
+    }
 }
 

@@ -1,5 +1,5 @@
-const buttons = document.querySelectorAll('h5')
 
+ 
 
 const ImageGallery = {
   highlight: document.querySelector('.card__image-container .highlight > img'),
@@ -15,6 +15,7 @@ const ImageGallery = {
   }
 }
 
+const buttons = document.querySelectorAll('h5')
 for (let button of buttons) {
 
 
@@ -32,7 +33,6 @@ for (let button of buttons) {
 
   })
 }
-
 
 
 
