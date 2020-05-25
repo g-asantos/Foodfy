@@ -5,12 +5,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    max-width: 1700px;
+    
 }
 
 html {
     overflow-x: hidden;
 }   
+
 header img {
     font-weight: normal;
     margin-left: 231px;
@@ -121,6 +122,7 @@ p#trash3 {
     left: 230px;
     top: 390px;
 }
+
 a.about {
     width: 50%;
     position: absolute;
@@ -128,6 +130,7 @@ a.about {
     top: 38px;
     color: black;
     text-decoration: none;
+
 }
 
 a.recipes {
@@ -225,6 +228,7 @@ footer#second {
 footer#third{
     top: 600px;
 }
+
 
 
 #adHead {

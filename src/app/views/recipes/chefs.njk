@@ -7,12 +7,7 @@
             <title>Foodfy</title>
             <link rel="stylesheet" href="/styles/styles.css">
         </head>
-        <header>
-            <img src="/logo.png" alt="" class='logo'>
-            <a href="/sobre" class='about'>Sobre</a>
-            <a href="/receitas" class='recipes'>Receitas</a>
-            <a href="/chefs"  class='chefs_link' style="font-weight: bold;">Chefs</a>
-        </header>
+        {% include 'parts/headerMain.njk'%}
 
         <div class="userchefContainer">
             {%for chef in chefs%}
