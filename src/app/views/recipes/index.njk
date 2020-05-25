@@ -8,17 +8,7 @@
     </head>
 
     <body>
-        <header>
-            <img src="/logo.png" alt="" class='logo'>
-
-            <a href="/sobre" class='about' onclick='this.classList.toggle("active")'>Sobre</a>
-            <a href="/receitas" class='recipes'>Receitas</a>
-            <a href="/chefs" class='chefs_link'>Chefs</a>
-            <form action="/receitas" method='GET'>
-                <input type="text" name='filter' placeholder='  Buscar uma receita'>
-                <button type="submit">Buscar</button>
-            </form>
-        </header>
+        {%include 'parts/headerMain.njk'%}
         <section>
             <div class='container'>
                 <strong>As melhores receitas</strong>

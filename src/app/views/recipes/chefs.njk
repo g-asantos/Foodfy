@@ -7,17 +7,7 @@
             <title>Foodfy</title>
             <link rel="stylesheet" href="/styles/styles.css">
         </head>
-        <header>
-            <img src="/logo.png" alt="" class='logo'>
-
-            <a href="/sobre" class='about'>Sobre</a>
-            <a href="/receitas" class='recipes'>Receitas</a>
-            <a href="/chefs" class='chefs_link active'>Chefs</a>
-            <form action="/receitas" method='GET'>
-                <input type="text" name='filter' placeholder='  Buscar uma receita'>
-                <button type="submit">Buscar</button>
-            </form>
-        </header>
+        {%include 'parts/headerMain.njk'%}
 
         <div class="userchefContainer">
             {%for chef in chefs%}
