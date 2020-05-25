@@ -7,8 +7,17 @@
             <title>Foodfy</title>
             <link rel="stylesheet" href="/styles/styles.css">
         </head>
-        {%include 'parts/headerMain.njk'%}
+        <header>
+            <img src="/logo.png" alt="" class='logo'>
 
+            <a href="/sobre" class='about'>Sobre</a>
+            <a href="/receitas" class='recipes active'>Receitas</a>
+            <a href="/chefs" class='chefs_link'>Chefs</a>
+            <form action="/receitas" method='GET'>
+                <input type="text" name='filter' placeholder='  Buscar uma receita'>
+                <button type="submit">Buscar</button>
+            </form>
+        </header>
         {%if filter%}
             <p id='lookFor'>Buscando por '{{filter}}'</p>
         {% endif %}
@@ -18,17 +27,17 @@
                 <div class='card' id='{{recipe.id}}'>
                     <div class='card__image-container'>
                         <div class='card__image-container'>
-                            
+
                             {%for file in files%}
                                 {%for i in range(0, 1)%}
                                     {%if recipe.id == file[i].recipe_id%}
                                         <a href='/receitas/{{recipe.id}}'>
-                                        <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{recipe.title}}"/>
+                                            <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{recipe.title}}"/>
                                         </a>
                                         {%endif%}
                                         {%endfor%}
                                         {%endfor%}
-                                        
+
                                     </div>
 
                                 </div>

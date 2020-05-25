@@ -1,4 +1,6 @@
 
+
+
 const ImageGallery = {
   highlight: document.querySelector('.card__image-container .highlight > img'),
   previews: document.querySelectorAll('.filePreview img'),
@@ -12,4 +14,3 @@ const ImageGallery = {
     ImageGallery.highlight.src = target.src
   }
 }
-

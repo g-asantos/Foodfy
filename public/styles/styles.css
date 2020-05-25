@@ -378,3 +378,6 @@ top: 150px;
 margin-bottom: 20px;
 }
 
+header a.active{
+    font-weight: bold;
+}

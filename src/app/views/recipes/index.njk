@@ -4,12 +4,21 @@
     <head>
         <title>Foodfy</title>
         <link rel="stylesheet" href="/styles/styles.css">
-        
+
     </head>
 
     <body>
-        
-        {%include 'parts/headerMain.njk'%}
+        <header>
+            <img src="/logo.png" alt="" class='logo'>
+
+            <a href="/sobre" class='about' onclick='this.classList.toggle("active")'>Sobre</a>
+            <a href="/receitas" class='recipes'>Receitas</a>
+            <a href="/chefs" class='chefs_link'>Chefs</a>
+            <form action="/receitas" method='GET'>
+                <input type="text" name='filter' placeholder='  Buscar uma receita'>
+                <button type="submit">Buscar</button>
+            </form>
+        </header>
         <section>
             <div class='container'>
                 <strong>As melhores receitas</strong>
@@ -19,39 +28,37 @@
 
             <strong>Mais acessadas</strong>
             <div class="recipeContainerOriginal">
-               
+
                 {% for recipe in recipes %}
-                    
 
-                        <div class='card' id='{{recipe.id}}'>
+                    <div class='card' id='{{recipe.id}}'>
 
-                            <div class='card__image-container'>
+                        <div class='card__image-container'>
                             {%for file in files%}
                                 {%for i in range(0, 1)%}
-                                {%if recipe.id == file[i].recipe_id%}
-                                <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{recipe.title}}"/>
-                                {%endif%}
+                                    {%if recipe.id == file[i].recipe_id%}
+                                        <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{recipe.title}}"/>
+                                        {%endif%}
+                                        {%endfor%}
+                                        {%endfor%}
+                                    </div>
+
+                                    <div class='card__content'>
+                                        <p>{{recipe.title}}</p>
+                                    </div>
+                                    <div class='card__info'>
+                                        <p>por
+                                            {{recipe.chef_name}}</p>
+                                    </div>
+                                </div>
+
                                 {%endfor%}
-                            {%endfor%}
                             </div>
+                        </section>
 
-                            <div class='card__content'>
-                                <p>{{recipe.title}}</p>
-                            </div>
-                            <div class='card__info'>
-                                <p>por
-                                    {{recipe.chef_name}}</p>
-                            </div>
-                        </div>
+                        {%include 'parts/footer.njk'%}
 
-                        
-                    {%endfor%}
-                </div>
-            </section>
+                        <script src="/scripts.js"></script>
+                    </body>
 
-            {%include 'parts/footer.njk'%}
-
-        <script src="/scripts.js"></script>
-        </body>
-
-    </html>
+                </html>
