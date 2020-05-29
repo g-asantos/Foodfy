@@ -57,10 +57,10 @@ module.exports = {
                     let fileResults = await db.query(`SELECT * FROM recipes  
                     WHERE recipes.chef_id = $1 ORDER BY recipes.created_at DESC`, [recipes[i].chef_id])
                     let recipe_filesResults = await db.query(`SELECT * FROM recipe_files WHERE recipe_files.recipe_id = $1`,
-                        [fileResults.rows[i].id])
+                    [fileResults.rows[i].id])
 
 
-
+                    
                     let files = await db.query(`SELECT * FROM files WHERE files.id = $1`, [recipe_filesResults.rows[0].file_id])
                     let recipe_filesFiles = recipe_filesResults.rows
 
@@ -120,13 +120,15 @@ module.exports = {
 
 
         const filesPromise = req.files.map(file => File.create({
-            ...file,
-
+            name: file.filename,
+            path: file.path
+            
         }))
 
         const fileId = await Promise.all(filesPromise)
 
-        let results = await Chef.create({ name: req.body.name, file_id: fileId[0].rows[0].id })
+        let results = await Chef.create({ name: req.body.name, file_id: fileId[0].rows[0].id,
+        created_at: date(Date.now()).iso })
 
 
 
@@ -165,7 +167,8 @@ module.exports = {
             [req.body.id])
 
         const filesPromise = req.files.map(file => File.create({
-            ...file,
+            name: file.filename,
+            path: file.path
 
         }))
 

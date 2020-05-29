@@ -2,6 +2,7 @@ const db = require('../config/db')
 const Recipe = require('../models/recipe')
 const File = require('../models/file')
 const fs = require('fs')
+const { date } = require('../lib/utils')
 
 module.exports = {
     async index(req, res) {
@@ -117,7 +118,7 @@ module.exports = {
     },
     async post(req, res) {
         const keys = Object.keys(req.body)
-
+        
         for (key of keys) {
             if (req.body[key] == '') {
                 return res.send('Please fill all fields')
@@ -127,16 +128,25 @@ module.exports = {
 
         if (req.files.length == 0)
             return res.send('Please, send at least one image')
-
+        
+        let { ingredients, preparation} = req.body
+        
+        ingredients = `{${ingredients}}`
+        preparation = `{${preparation}}`
+        
 
         let results = await Recipe.create({
             ...req.body,
-            user_id: req.session.userId})
+            ingredients,
+            preparation,
+            user_id: req.session.userId,
+        created_at: date(Date.now()).iso})
         const recipeId = results.rows[0].id
 
 
         const filesPromise = req.files.map(file => File.create({
-            ...file,
+            name: file.filename,
+            path: file.path
 
         }))
 
@@ -210,7 +220,7 @@ module.exports = {
 
             for (let i = 0; i < results.length; i++) {
 
-
+                
                 let removeFileRegistry = await db.query(`DELETE FROM files WHERE files.id = $1`, [results[i].rows[0].file_id])
             }
 
@@ -221,9 +231,10 @@ module.exports = {
         if (req.files.length != 0) {
 
 
-
+            
             const newFilesPromise = req.files.map(file =>
-                File.create({ ...file }))
+                File.create({ name: file.filename,
+                    path: file.path }))
 
             const fileResults = await Promise.all(newFilesPromise)
 
@@ -236,7 +247,22 @@ module.exports = {
 
         }
 
-        await Recipe.update(req.body)
+        
+        let { ingredients, preparation, title, chef, information} = req.body
+        
+        ingredients = `{${ingredients}}`
+        preparation = `{${preparation}}`
+        
+        
+        await Recipe.update(req.body.id,{
+            title,
+            chef_id: chef,
+            information,
+            ingredients,
+            preparation
+            
+        })
+        
         
         req.session.save(() => {
             return res.redirect(`/receitas/${req.body.id}`)

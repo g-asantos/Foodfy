@@ -12,21 +12,21 @@ module.exports = {
     },
     async post(req, res) {
 
-        const { name, email, id } = req.body
+        const { name, email } = req.body
         
-
+        const token = crypto.randomBytes(20).toString("hex")
 
 
         if (req.body.admin) {
-            const userId = await User.create({ name, email, is_admin: true })
+            const userId = await User.create({ name, email, is_admin: true, password: token })
             
 
-            const token = crypto.randomBytes(20).toString("hex")
-
+            
+            
             let now = new Date()
             now = now.setHours(now.getHours() + 1)
 
-            await User.newUpdate(userId, {
+            await User.newUpdate(userId.rows[0].id, {
                 reset_token: token,
                 reset_token_expires: now
             })
@@ -43,16 +43,13 @@ module.exports = {
             return res.redirect('/users/admin/users')
 
         } else {
-            const userId = await User.create({ name, email, is_admin: false })
+            const userId = await User.create({ name, email, is_admin: false, password: token })
             
-
-
-            const token = crypto.randomBytes(20).toString("hex")
 
             let now = new Date()
             now = now.setHours(now.getHours() + 1)
 
-            await User.newUpdate(userId, {
+            await User.newUpdate(userId.rows[0].id, {
                 reset_token: token,
                 reset_token_expires: now
             })

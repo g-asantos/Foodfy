@@ -46,7 +46,7 @@
                 </div>
                 <div class='item'>
                     <div>Chef</div>
-                    <select name="chef" class='chefSelect'>
+                    <select name="chef_id" class='chefSelect'>
                         {%for chef in chefsOptions%}
                             <option value="{{chef.id}}">
                                 {{chef.name}}
@@ -80,6 +80,7 @@
 
                 <script src="/photosUpload.js"></script>
                 <script src="/scripts.js"></script>
+                <script src="/hideButton.js"></script>
             </body>
 
         </html>
