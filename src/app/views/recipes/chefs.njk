@@ -13,15 +13,15 @@
             {%for chef in chefs%}
                 <div class='card' id='{{chef.id}}'>
                     <div class='card__image-container_chef'>
-                        {%for file in files%}
-                            {%for i in range(0, 1)%}
-                                {%if chef.file_id == file[i].id%}
+                        
+                                {%for i in range(0, chefs.length)%}
+                                {%if files[i].id == chef.file_id %}
 
-                                    <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{chef.name}}"/>
+                                    <img src="{{files[i].path}}" alt="{{chef.name}}"/>
                                     {%endif%}
-
-                                    {%endfor%}
-                                    {%endfor%}
+                                {%endfor%}
+                                 
+                                   
                                 </div>
                                 <div class='card__content_chef'>
                                     <p>{{chef.name}}</p>

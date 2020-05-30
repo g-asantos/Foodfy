@@ -27,7 +27,7 @@
                             {%for file in files%}
                                 {%for i in range(0, 1)%}
                                     {%if recipe.id == file[i].recipe_id%}
-                                        <img src="http://localhost:5000/images/{{file[0].name}}" alt="{{recipe.title}}"/>
+                                        <img src="{{file[0].path}}" alt="{{recipe.title}}"/>
                                         {%endif%}
                                         {%endfor%}
                                         {%endfor%}

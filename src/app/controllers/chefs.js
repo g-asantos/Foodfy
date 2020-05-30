@@ -15,7 +15,7 @@ module.exports = {
                 files.push(results.rows)
             }
 
-
+            
 
             return res.render('chefs/index', { chefs, files })
         })
@@ -25,7 +25,7 @@ module.exports = {
         Chef.all(async function (chefs) {
             let files = []
             for (let i = 0; i < chefs.length; i++) {
-                let results = await db.query(`SELECT files.name,files.id FROM files
+                let results = await db.query(`SELECT files.* FROM files
             JOIN chefs ON files.id = chefs.file_id
 
             
@@ -33,10 +33,11 @@ module.exports = {
             
             WHERE files.id= $1`, [chefs[i].file_id])
 
-                files.push(results.rows)
+                files.push(results.rows[0])
+                
             }
-
-
+            
+            
             return res.render('recipes/chefs', { chefs, files })
         })
 
@@ -48,25 +49,26 @@ module.exports = {
             if (!chef) return res.send('Chef not found!')
             let results = await db.query(`SELECT * FROM files WHERE files.id = $1`, [chef.file_id])
 
-            let chefFiles = results.rows[0].name
+            let chefFiles = results.rows[0].path
 
             Chef.recipesMade(async function (recipes) {
-                let recipe_files = []
+                
                 let recipeFiles = []
                 for (let i = 0; i < recipes.length; i++) {
                     let fileResults = await db.query(`SELECT * FROM recipes  
                     WHERE recipes.chef_id = $1 ORDER BY recipes.created_at DESC`, [recipes[i].chef_id])
+                    
+                    
                     let recipe_filesResults = await db.query(`SELECT * FROM recipe_files WHERE recipe_files.recipe_id = $1`,
-                    [fileResults.rows[i].id])
-
-
+                    [fileResults.rows[0].id])
+                    
                     
                     let files = await db.query(`SELECT * FROM files WHERE files.id = $1`, [recipe_filesResults.rows[0].file_id])
                     let recipe_filesFiles = recipe_filesResults.rows
 
 
                     if (files.rows[0].id == recipe_filesFiles[0].file_id && recipes[i].id == recipe_filesFiles[0].recipe_id) {
-                        recipeFiles.push(files.rows[0].name)
+                        recipeFiles.push(files.rows[0].path)
 
 
                     }
@@ -76,7 +78,7 @@ module.exports = {
                 }
 
 
-
+                
                 return res.render('chefs/detalhes', { chef, recipesMade: recipes, chefFiles, recipeFiles })
 
             })

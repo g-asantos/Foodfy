@@ -15,14 +15,13 @@ module.exports = {
             let results = await Recipe.files(recipes[i].id)
             let filesResults = results.rows
             
-
+            
             
                 
             files.push(filesResults)
             
-            }
             
-            	
+            }	    
             return res.render('recipes/index', { recipes, files})
         
 
@@ -98,7 +97,7 @@ module.exports = {
 
             files = files.map(file => ({
                     ...file,
-                    src: `${req.protocol}://${req.headers.host}/images/`
+                    src: `${req.protocol}://${req.headers.host}`
             }))
 
             

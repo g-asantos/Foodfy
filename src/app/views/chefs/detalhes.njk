@@ -25,7 +25,7 @@
                 </div>
 
                 <div class='card__content__chef__admin'>
-                    <img src="http://localhost:5000/images/{{chefFiles}}" alt="{{chef.title}}"/>
+                    <img src="http://localhost:5000/{{chefFiles}}" alt="{{chef.title}}"/>
                     <div class="chef__details">
                     <p id='card__info__chef__name'>{{chef.name}}</p>
                     <p id='card__info__chef'>{{chef.total_recipes}}
@@ -42,15 +42,15 @@
             {% for recipe in recipesMade %}
                 {%if chef.id == recipe.chef_id %}
                     <div class='card_admin_recipe' id='{{recipe.id}}'>
-                         {%for i in range(loop.revindex0 , loop.revindex )%}
+                         
                          
                         <div class='card__image-container_recipe'>
                                
-                                <img src="http://localhost:5000/images/{{recipeFiles[(recipesMade.length - 1) - i ]}}" alt="{{recipe.title}}"/>
+                                <img src="http://localhost:5000/{{recipeFiles[0]}}" alt="{{recipe.title}}"/>
                                 
                             </div>
                                 
-                             {%endfor%}
+                            
                             <div class='card__content_recipe'>
                                 <p>{{recipe.title}}</p>
                                 <div class='card__info_recipe'>
