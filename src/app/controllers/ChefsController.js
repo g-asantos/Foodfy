@@ -37,7 +37,13 @@ module.exports = {
                 
             }
             
-            
+            for (let i = 0; i < files.length; i++) {
+                let newImages = files[i].path.replace(/public/i, '')
+
+
+
+                files[i].path = newImages
+            }
             return res.render('recipes/chefs', { chefs, files })
         })
 
@@ -50,7 +56,7 @@ module.exports = {
             let results = await db.query(`SELECT * FROM files WHERE files.id = $1`, [chef.file_id])
 
             let chefFiles = results.rows[0].path
-
+            chefFiles = chefFiles.replace(/public/i, '')
             Chef.recipesMade(async function (recipes) {
                 
                 let recipeFiles = []
@@ -76,7 +82,16 @@ module.exports = {
 
 
                 }
-
+                
+                
+                
+                for (let i = 0; i < recipeFiles.length; i++) {
+                    recipeFiles[i] = recipeFiles[i].replace(/public/i, '')
+    
+    
+                    
+                    
+                }
 
                 
                 return res.render('chefs/detalhes', { chef, recipesMade: recipes, chefFiles, recipeFiles })
@@ -188,9 +203,21 @@ module.exports = {
         })
         
         
+     
+       
+            fs.unlinkSync(req.body.file_id)
+            
+        
+
+
+            req.session.save(() => {
+                return res.redirect(`chefs/${req.body.id}`)
+            })
+            
+
+
         
         
-        fs.unlinkSync(req.body.file_id)
         
         
        
@@ -211,10 +238,6 @@ module.exports = {
 
 
 
-        req.session.save(() => {
-            return res.redirect(`chefs/${req.body.id}`)
-        })
-        
     },
     async delete(req, res) {
 

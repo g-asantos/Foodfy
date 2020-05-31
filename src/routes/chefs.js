@@ -1,6 +1,6 @@
 const express = require('express')
 const routes = express.Router()
-const chefs = require('../app/controllers/chefs')
+const chefs = require('../app/controllers/ChefsController')
 const multer = require('../app/middlewares/multer')
 const { onlyAdmins, isLogged } = require('../app/middlewares/session')
 

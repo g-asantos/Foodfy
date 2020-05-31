@@ -54,8 +54,8 @@ async function createChefs(){
     while(files.length < totalChefs){
 
         files.push({
-            name: faker.image.image(),
-            path: `public/images/placeholder.png`,
+            name: faker.name.firstName(),
+            path: faker.image.avatar(),
             
         })
         
@@ -108,8 +108,8 @@ async function createRecipes(){
     while(files.length < totalRecipes){
 
         files.push({
-            name: faker.image.image(),
-            path: `public/images/placeholder.png`,
+            name: faker.random.word(),
+            path: faker.image.food(),
             
         })
         

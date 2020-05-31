@@ -47,7 +47,7 @@
                         {%if files %}
                             {%for file in files%}
                                 <div class="photo" id={{file.id}}>
-                                    <img src="{{file.src}}{{file.name}}" alt="{{file.name}}">
+                                    <img src="{{file.path}}" alt="{{file.name}}">
                                     <i 
                                     class="material-icons"
                                     onclick='PhotosUpload.removeOldPhoto(event)' >close</i>
@@ -111,7 +111,7 @@
 
             <script src="/photosUpload.js"></script>
             <script src="/scripts.js"></script>
-            <script src="/hideButton.js"></script>
+            <script src="/addButton.js"></script>
         </body>
 
     </html>

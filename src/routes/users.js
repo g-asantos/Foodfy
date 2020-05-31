@@ -34,10 +34,10 @@ routes.post('/password-reset', SessionValidator.reset, SessionController.reset)
 
 routes.get('/admin/users', isLogged, isAdmin, UserController.list) //Mostrar a lista de usuários cadastrados
 routes.get('/admin/recipes', isLogged, UserController.recipes)
-routes.get('/admin/register',  UserController.registerForm)
-routes.post('/register',  UserValidator.post, UserController.post)//Cadastrar um usuário
+routes.get('/admin/register', onlyAdmins,  UserController.registerForm)
 routes.get('/admin/:id/edit' , SessionValidator.edit , UserController.editForm)
-routes.put('/admin/users', SessionValidator.editPut, UserController.put) // Editar um usuário
+routes.post('/register', onlyAdmins,  UserValidator.post, UserController.post) //Cadastrar um usuário
+routes.put('/admin/users', SessionValidator.edit, UserController.put) // Editar um usuário
 routes.delete('/admin/users/:id', onlyAdmins, deleteSelf, UserController.delete) // Deletar um usuário
 
 

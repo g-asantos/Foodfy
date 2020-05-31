@@ -16,14 +16,3 @@ const ImageGallery = {
 }
 
 
-const images = document.querySelectorAll('img')
-
-for(let i = 0; i < images.length; i++){
-  
-  let newImages = images[i].src.replace(/public/i, '')
-  
-  
-
-  images[i].src = newImages
-}
-

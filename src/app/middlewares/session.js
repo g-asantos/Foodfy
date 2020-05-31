@@ -3,6 +3,7 @@ const db = require('../config/db')
 async function onlyAdmins(req, res, next) {
     
     let admin_data = await db.query('SELECT users.is_admin FROM users WHERE users.id = $1', [req.session.userId])
+    
     if(admin_data.rows[0].is_admin == false){
         return res.render('user/login', {
         error: 'Você não esta autorizado a realizar esta ação'

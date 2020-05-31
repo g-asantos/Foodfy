@@ -1,7 +1,7 @@
 const express = require('express')
 const routes = express.Router()
 const multer = require('../app/middlewares/multer')
-const recipes = require('../app/controllers/recipes')
+const recipes = require('../app/controllers/RecipesController')
 const { onlyAdmins, isLogged, isCreator } = require('../app/middlewares/session')
 
 routes.get("/", recipes.receitas); 
