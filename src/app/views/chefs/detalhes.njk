@@ -3,16 +3,10 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/styles2.css">
+        {%include 'parts/styles.njk'%}
 
     </head>
-    <header id='adHead'>
-        <div class="admin_head">
-            <h1><img src="/Foodfy.png" alt="" ></h1>
-            <a href="/receitas" class='recipes_admin'>RECEITAS</a>
-            <a href="/chefs" class='chefs_link_admin'>CHEFS</a>
-        </div>
-    </header>
+    {%include 'parts/headerBlack.njk'%}
     <body>
 
         <section>

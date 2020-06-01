@@ -1,20 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
-
-*{
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
-}
-body {
-    width: 1200px;
-    height: 1000px;
-}
-html {
-    overflow-x: hidden;
-}   
-
 
 /* HEADER */
 
@@ -65,27 +48,27 @@ html {
 
 /* create User */
 
-section{
+section.createUser{
     position: relative;
     left: 230px;
     top: 55px;
 }
 
 
-section .adminContainer{
+section.createUser .adminContainer{
     display: grid;
     grid-template-columns: 800px 139px 139px;
     grid-gap: 16px;
 }
 
-section .adminContainer h1{
+section.createUser .adminContainer h1{
     font-family: Helvetica;
     font-size: 24px;
     color: #111111;
     font-weight: bold;
 }
 
-section .adminContainer .save{
+section.createUser .adminContainer .save{
     background: #6558C3;
     border-radius: 4px;
     border: 1px solid #6558C3;
@@ -96,7 +79,7 @@ section .adminContainer .save{
     font-weight: bold;
 }
 
-section .adminContainer .cancel{
+section.createUser .adminContainer .cancel{
     background: #8A8A8A;
     border-radius: 4px;
     border: 1px solid #8A8A8A;

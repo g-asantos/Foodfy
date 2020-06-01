@@ -3,20 +3,13 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/styles2.css">
+        {%include 'parts/styles.njk'%}
 
     </head>
 
     <body>
-        <header>
-            <h1 id='detailFix'><img src="/Foodfy.png" alt="" ></h1>
-            
-            <a href="/receitas" class='recipes' id='detailRecipes' style="font-weight: bold;">Receitas</a>
-            <a href="/chefs"  class='chefs_link' id='detailChefs' >Chefs</a>
-            
-
-        </header>
-
+        
+        {%include 'parts/headerBlack.njk'%}
         <section>
             <div class="adminContainer">
                 
@@ -43,7 +36,7 @@
                         </div>
                 </div>
             <div id="card__profile">
-            <div class='card__content' 
+            <div class='card__content' id='recipe_text'> 
             <p> {{recipe.title}}</p>
         </div>
         <div class='card__info'>
@@ -84,9 +77,7 @@
 
     </section>
 
-    <footer>
-        <p>Todos os direitos reservados, receitas Foodfy.</p>
-    </footer>
+    {%include 'parts/footer.njk'%}
 
     <script src="/scripts.js"></script>
     <script src="/hideButton.js"></script>

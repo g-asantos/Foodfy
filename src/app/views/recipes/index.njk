@@ -3,7 +3,7 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/styles.css">
+        {%include 'parts/styles.njk'%}
 
     </head>
 
@@ -44,10 +44,11 @@
 
                                 {%endfor%}
                             </div>
+                            
                         </section>
 
+                        
                         {%include 'parts/footer.njk'%}
-
                         <script src="/scripts.js"></script>
                     </body>
 

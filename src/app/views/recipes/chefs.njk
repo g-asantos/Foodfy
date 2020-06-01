@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html>
-
+    <head>
+        <title>Foodfy</title>
+        {%include 'parts/styles.njk'%}
+    </head>
     <body>
 
-        <head>
-            <title>Foodfy</title>
-            <link rel="stylesheet" href="/styles/styles.css">
-        </head>
         {%include 'parts/headerMain.njk'%}
 
         <div class="userchefContainer">
             {%for chef in chefs%}
                 <div class='card' id='{{chef.id}}'>
                     <div class='card__image-container_chef'>
-                        
-                                {%for i in range(0, chefs.length)%}
-                                {%if files[i].id == chef.file_id %}
 
-                                    <img src="{{files[i].path}}" alt="{{chef.name}}"/>
-                                    {%endif%}
+                        {%for i in range(0, chefs.length)%}
+                            {%if files[i].id == chef.file_id %}
+
+                                <img src="{{files[i].path}}" alt="{{chef.name}}"/>
+                                {%endif%}
                                 {%endfor%}
-                                 
-                                   
-                                </div>
-                                <div class='card__content_chef'>
-                                    <p>{{chef.name}}</p>
-                                    <a href="chefs/{{chef.id}}" class="see">Visualizar</a>
-
-                                </div>
 
                             </div>
-                        {% endfor %}
+                            <div class='card__content_chef'>
+                                <p>{{chef.name}}</p>
+                                <a href="chefs/{{chef.id}}" class="see">Visualizar</a>
 
-                    </div>
-                    <footer id='second'>
-                        <p>Todos os direitos reservados, receitas Foodfy.</p>
-                    </footer>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+
                 </div>
+                {%include 'parts/footer.njk'%}
+            </div>
 
-                <script src="/scripts.js"></script>
-            </body>
+            <script src="/scripts.js"></script>
+        </body>
 
-        </html>
+    </html>

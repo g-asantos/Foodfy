@@ -5,7 +5,7 @@
 
         <head>
             <title>Foodfy</title>
-            <link rel="stylesheet" href="/styles/styles.css">
+            {%include 'parts/styles.njk'%}
         </head>
         {%include 'parts/headerMain.njk'%}
         {%if filter%}
@@ -41,9 +41,7 @@
                             </div>
                         {% endfor %}
                     </div>
-                    <footer id='second'>
-                        <p>Todos os direitos reservados, receitas Foodfy.</p>
-                    </footer>
+                    {%include 'parts/footer.njk'%}
                 </div>
 
                 <script src="/scripts.js"></script>
