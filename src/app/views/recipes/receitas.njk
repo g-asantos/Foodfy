@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+    <head>
+        <title>Foodfy</title>
+        {%include 'parts/styles.njk'%}
+    </head>
     <body>
 
-        <head>
-            <title>Foodfy</title>
-            {%include 'parts/styles.njk'%}
-        </head>
         {%include 'parts/headerMain.njk'%}
         {%if filter%}
             <p id='lookFor'>Buscando por '{{filter}}'</p>

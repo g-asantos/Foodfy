@@ -17,7 +17,7 @@
     grid-gap: 10px;
     position: relative;
     right: 350px;
-    top: 330px;
+    top: 430px;
 }
 
 
@@ -48,7 +48,14 @@
     flex-direction: column;
     position: relative;
     left: -10px;
-    top: 415px;
+    top: 480px;
+}
+
+div.detailsInfoContainer{
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    top: -50px;
 }
 
 .ingredients h2 {
@@ -154,8 +161,76 @@
     grid-template-columns: 1fr 1fr;
     position: relative;
     left: 230px;
-    top: 63px;
+    top: -300px;
     gap: 280px;
+}
+
+.editContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    left: 230px;
+    top: 100px;
+    gap: 280px;
+}
+.createContainer{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    left: 230px;
+    top: 80px;
+
+}
+
+.userUpdateContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    left: 230px;
+    top: -90px;
+    gap: 280px;
+}
+
+.userUpdateContainer button{
+    width: 139px;
+    height: 37px;
+    border-radius: 4px;
+}
+
+.userUpdateContainer button.cancel{
+    background: #DC4747;
+    border: 1px solid #DC4747;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    position: relative;
+    bottom: 3px;
+    left: 20px;
+}
+
+.userUpdateContainer button.save{
+    background: #7159C1;
+    border: 1px solid #7159C1;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    position: relative;
+    top: -320px;
+    left: 800px;
+
+}
+
+
+.createContainer button {
+    width: 139px;
+    height: 37px;
+    border-radius: 4px;
+    left: 50px;
 }
 
 .edit{
@@ -163,7 +238,7 @@
     width: 136px;
     height: 37px;
     border-radius: 4px;
-    font-family: Roboto-Bold;
+    font-family: Roboto;
     font-size: 16px;
     color: #FFFFFF;
     text-decoration: none;
@@ -177,6 +252,15 @@
 }
 
 
+form#creationChef {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 230px;
+    top: -250px;
+}
+
+
 form {
     display: flex;
     flex-direction: column;
@@ -184,6 +268,15 @@ form {
     left: 230px;
     top: 113px;
 }
+
+form.userEdit {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 230px;
+    top: -420px;
+}
+
 
 form input{
     width: 940px;
@@ -262,7 +355,8 @@ div.card__image-container_recipe img {
     font-size: 18px;
     color: #111111;
     margin-left: 20px;
-
+    display: grid;
+    grid-template-columns: max-content;
 }
 
 
@@ -353,21 +447,19 @@ textarea {
     display: flex;
     flex-direction: column;
     position: relative;
-    left: 500px;
-    bottom: 110px;
+    left: -30px;
+    top: -300px;
     text-align: center;
+    align-items: center;
 }
 
-.chef__details {
-    position: relative;
-    right: 650px;
-}
 
 #card__info__chef__name {
 font-weight: bold;
 font-size: 36px;
 color: #111111;
-
+margin-top: 30px;
+margin-bottom: 4px;
 }
 
 

@@ -20,6 +20,11 @@ body{
   grid-template-rows: 1fr auto;
 }
 
+body.detailsBody{
+    min-height: 1500px;
+    display: flex;
+    flex-direction: column;
+}
 header img {
     font-weight: normal;
     margin-left: 231px;
@@ -91,20 +96,25 @@ a#detailChefs{
     font-weight: bold;
     
 }
-button#recipeEdit{
-    position: absolute;
-    left: 800px;
-    top: -85px;
-    
-}
 
-a.linkedit {
+button.linkedit {
     font-family: Helvetica;
     font-size: 16px;
     color: #FFFFFF;
     text-decoration: none;
-
+    position: relative;
+    left: 1040px;
+    top: 140px;
 }
+form#buttonForm{
+    display: initial;
+    position: initial;
+    left: 0;
+    top: 0;
+    
+}
+
+
 .container {
     background: #FBDFDB;
     border-radius: 30px;
@@ -243,20 +253,28 @@ a.recipes {
     text-decoration: none;
 }
 
+.recipeContainerFrontPage{
+    display: grid;
+    grid-template-columns: 320px 320px 320px ;
+    position: relative;
+    left: 230px;
+    top: 100px;
+}
+
 .recipeContainerOriginal{
     display:grid;
-    grid-template-columns: 300px 300px 300px;
+    grid-template-columns: 600px 600px;
     gap: 20px;
     position: relative;
     left: 230px;
-    top: 98px;
+    top: -200px;
     
 }
 
 
 .recipeContainer {
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 320px 320px 320px;
     margin-left: 230px;
     margin-top: 163px;
     
@@ -273,6 +291,9 @@ a.recipes {
     margin-bottom: 20px;
 }
 
+.card.details{
+    position: relative;
+}
 
 .card__content {
     font-size: 18px;
@@ -289,7 +310,7 @@ a.recipes {
 }
 
 .card__info {
-    font-size: 14px;
+    font-size: 20px;
     color: #777777;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -300,7 +321,15 @@ strong {
     color: #111111;
     position: absolute;
     left: 230px;
-    top: 509px;
+    top: 609px;
+}
+
+strong.topRecipes{
+    font-size: 24px;
+    color: #111111;
+    position: absolute;
+    left: 230px;
+    top: 500px;
 }
 div.card__image-container img {
     width: 300px;
@@ -327,6 +356,10 @@ footer p {
     
 }
 
+div.footerContainer{
+    position: relative;
+    top: 760px;
+}
 #adHead {
     background-color: black;
     box-sizing: border-box;
@@ -347,12 +380,6 @@ footer p {
     
 }
 
-.infoContainer {
-    position: relative;
-    left:320px;
-    bottom: 160px;
-
-}
 
 .see {
     text-decoration: none;
@@ -365,7 +392,9 @@ footer p {
 .userchefContainer {
     position:relative;
     left: 210px;
-    top: -400px;
+    top: -300px;
+    display: grid;
+    grid-template-columns: 250px 250px 250px 250px;
 }
 
 .userchefContainer .card {
@@ -444,7 +473,7 @@ margin-left: 30px;
 
 header form.search{
     position: absolute;
-    left: 910px;
+    left: 830px;
     top: 25px;
     display: initial;
 }
