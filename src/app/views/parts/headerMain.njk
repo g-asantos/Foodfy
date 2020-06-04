@@ -1,9 +1,9 @@
 <header>
     <img src="/logo.png" alt="" class='logo'>
     
-    <a href="/sobre" class='about'>Sobre</a>
-    <a href="/receitas" class='recipes' >Receitas</a>
-    <a href="/chefs" class='chefs_link'>Chefs</a>
+    <a href="/sobre" class='about' onclick='Boldener.boldIt(event)'>Sobre</a>
+    <a href="/receitas/" class='recipes'onclick='Boldener.boldIt(event)' >Receitas</a>
+    <a href="/chefs/" class='chefs_link' onclick='Boldener.boldIt(event)'>Chefs</a>
     <form action="/receitas" method='GET' class='search'>
         <input type="text" name='filter' placeholder='  Buscar uma receita'>
         <button type="submit" class='search'>Buscar</button>

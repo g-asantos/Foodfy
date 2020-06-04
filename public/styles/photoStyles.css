@@ -159,10 +159,10 @@ div.detailsInfoContainer{
 .adminContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    position: relative;
+    position: absolute;
     left: 230px;
-    top: -300px;
-    gap: 280px;
+    top: 200px;
+    gap: 800px;
 }
 
 .editContainer {
@@ -446,9 +446,9 @@ textarea {
 .card__content__chef__admin {
     display: flex;
     flex-direction: column;
-    position: relative;
-    left: -30px;
-    top: -300px;
+    position: absolute;
+    left: 600px;
+    top: 200px;
     text-align: center;
     align-items: center;
 }

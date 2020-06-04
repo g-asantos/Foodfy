@@ -265,9 +265,9 @@ a.recipes {
     display:grid;
     grid-template-columns: 600px 600px;
     gap: 20px;
-    position: relative;
+    position: absolute;
     left: 230px;
-    top: -200px;
+    top: 660px;
     
 }
 
@@ -390,9 +390,9 @@ div.footerContainer{
 
 
 .userchefContainer {
-    position:relative;
-    left: 210px;
-    top: -300px;
+    position: absolute;
+    left: 220px;
+    top: 200px;
     display: grid;
     grid-template-columns: 250px 250px 250px 250px;
 }
@@ -452,7 +452,7 @@ a.chefs_link {
 }
 
 .recipes_admin {
-font-weight: bold;
+
 font-size: 15px;
 color: #999999;
 text-align: left;
@@ -462,7 +462,7 @@ margin-left: 50px;
 }
 
 .chefs_link_admin{
-font-weight: bold;
+
 font-size: 15px;
 color: #999999;
 text-align: left;
@@ -511,3 +511,6 @@ top: 150px;
 margin-bottom: 20px;
 }
 
+.active {
+    font-weight: bold;
+}

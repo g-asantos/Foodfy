@@ -15,15 +15,16 @@ module.exports = {
                 let results = await Recipe.files(recipes[i].id)
                 let filesResults = results.rows
 
-
+                
 
 
                 files.push(filesResults)
 
-
+                
             }
             
             for (let i = 0; i < files.length; i++) {
+                
                 let newImages = files[i][0].path.replace(/public/i, '')
 
 
