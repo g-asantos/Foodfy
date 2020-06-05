@@ -202,10 +202,14 @@ module.exports = {
             await db.query(`DELETE FROM files WHERE files.path = $1`, [req.body.file_id])
         })
         
+        let files = req.body.file_id
         
-     
-       
-            fs.unlinkSync(req.body.file_id)
+        if (files != undefined && fs.existsSync(files) == true) {
+
+            fs.unlinkSync(files)
+
+        }
+         
             
         
 

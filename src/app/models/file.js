@@ -3,7 +3,7 @@ const db = require('../config/db')
 const fs = require('fs')
 const Base = require('./Base')
 
-Base.init({table: 'files'})
+Base.init({ table: 'files' })
 
 
 module.exports = {
@@ -41,9 +41,18 @@ module.exports = {
 
             const file = result.rows[0]
             
-            fs.unlinkSync(file.path)
 
-            
+            if (file != undefined && fs.existsSync(file.path) == true) {
+
+                fs.unlinkSync(file.path)
+
+            }
+
+
+            return await db.query(`DELETE FROM recipe_files
+        WHERE recipe_files.id = $1
+        RETURNING file_id`, [id])
+
         } catch (err) {
             console.error(err)
         }
@@ -54,11 +63,8 @@ module.exports = {
 
 
 
-        return db.query(`DELETE FROM recipe_files
-        WHERE recipe_files.id = $1
-        RETURNING file_id`, [id])
     },
-    
+
 
 
 }

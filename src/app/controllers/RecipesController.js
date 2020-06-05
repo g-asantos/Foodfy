@@ -23,13 +23,18 @@ module.exports = {
                 
             }
             
+            
             for (let i = 0; i < files.length; i++) {
                 
-                let newImages = files[i][0].path.replace(/public/i, '')
+                if(files[i][0] != undefined && fs.existsSync(files[i][0].path) == true){
+                    let newImages = files[i][0].path.replace(/public/i, '')
 
 
 
-                files[i][0].path = newImages
+                    files[i][0].path = newImages
+
+                } 
+                
             }
 
 
@@ -64,11 +69,14 @@ module.exports = {
 
                 }
                 for (let i = 0; i < files.length; i++) {
-                    let newImages = files[i][0].path.replace(/public/i, '')
+                    if(files[i][0] != undefined && fs.existsSync(files[i][0].path) == true){
+                        let newImages = files[i][0].path.replace(/public/i, '')
     
     
     
-                    files[i][0].path = newImages
+                        files[i][0].path = newImages
+    
+                    } 
                 }
 
                 return res.render('recipes/receitas', { recipes, files, filter })
@@ -95,12 +103,16 @@ module.exports = {
                     files.push(filesResults)
 
                 }
+                
                 for (let i = 0; i < files.length; i++) {
-                    let newImages = files[i][0].path.replace(/public/i, '')
+                    if(files[i][0] != undefined && fs.existsSync(files[i][0].path) == true){
+                        let newImages = files[i][0].path.replace(/public/i, '')
     
     
     
-                    files[i][0].path = newImages
+                        files[i][0].path = newImages
+    
+                    } 
                 }
                 return res.render('recipes/receitas', { recipes, files })
 
@@ -232,7 +244,9 @@ module.exports = {
             }
         }
 
-
+        if(req.files.length == 0 ){
+            return res.send('Please put atleast one image')
+        }
 
         if (req.body.removed_files) {
             const removedFiles = req.body.removed_files.split(',')
@@ -241,11 +255,11 @@ module.exports = {
 
             const removedFilesPromise = removedFiles.map(id => File.delete(id))
             const results = await Promise.all(removedFilesPromise)
-
+            
+            
             for (let i = 0; i < results.length; i++) {
-
-
-                let removeFileRegistry = await db.query(`DELETE FROM files WHERE files.id = $1`, [results[i].rows[0].file_id])
+                
+                await db.query(`DELETE FROM files WHERE files.id = $1`, [results[i].rows[0].file_id])
             }
 
 
@@ -271,7 +285,7 @@ module.exports = {
                 File.join({ recipe_id: req.body.id, file_id: fileResults[i].rows[0].id })
             }
 
-        }
+        } 
 
 
         let { ingredients, preparation, title, chef, information } = req.body
@@ -326,7 +340,7 @@ module.exports = {
 
 
             req.session.save(() => {
-                return res.redirect(`/users/admin/users`)
+                return res.redirect(`/`)
             })
         } catch (err) {
             console.error(err)
