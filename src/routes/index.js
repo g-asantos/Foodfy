@@ -13,8 +13,8 @@ routes.use('/receitas', receitas)
 routes.use('/chefs', chefs)
 
 
-routes.get('/sobre', function (req, res) {
-    return res.render('recipes/sobre')
+routes.get('/about', function (req, res) {
+    return res.render('recipes/about')
 });
 
 

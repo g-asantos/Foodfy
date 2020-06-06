@@ -4,7 +4,7 @@ const multer = require('../app/middlewares/multer')
 const recipes = require('../app/controllers/RecipesController')
 const { onlyAdmins, isLogged, isCreator } = require('../app/middlewares/session')
 
-routes.get("/", recipes.receitas); 
+routes.get("/", recipes.recipes); 
 routes.get("/create", isLogged,  recipes.create);  // Mostrar formulário de nova receita
 routes.get("/:id", recipes.show);// Exibir detalhes de uma receita
 routes.get("/:id/edit", isLogged, recipes.edit); // Mostrar formulário de edição de receita

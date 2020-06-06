@@ -34,7 +34,12 @@ module.exports = {
          
          return 
 
+        },
+        async adminStatus(id){
+            let admin_data = await db.query('SELECT users.is_admin FROM users WHERE users.id = $1', [id])
+            
+            return admin_data.rows[0].is_admin
+               
         }
-
 
 }

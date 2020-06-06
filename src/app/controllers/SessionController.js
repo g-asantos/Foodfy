@@ -14,12 +14,24 @@ module.exports = {
         req.session.destroy()
         return res.redirect('/users/login')
     },
-    login(req,res){
+    async login(req,res){
+
+        try{
+            let results = await User.adminStatus(req.user.id)
+
+        if(results == true){
+            req.session.is_admin = true
+        }
         req.session.userId = req.user.id
         
         req.session.save(() => {
             return res.redirect(`admin/${req.session.userId}/edit`)
         })
+
+        }catch(err){
+            console.error(err)
+        }
+        
         
     },
     forgotForm(req,res){
