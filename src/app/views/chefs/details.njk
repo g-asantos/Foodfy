@@ -15,7 +15,9 @@
                 <div class="adminContainer">
                     <h1>Chef:
                         {{chef.name}}</h1>
-                    <a href="{{chef.id}}/edit" class='edit'>Editar Chef</a>
+                    <form action='{{chef.id}}/edit' id='buttonForm'>
+                        <button type='submit' class='edit'>Editar Chef</button>
+                    </form>
                 </div>
 
                 <div class='card__content__chef__admin'>

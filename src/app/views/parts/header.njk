@@ -1,18 +1,20 @@
 <div class="header">
     <div class="headerContainer">
-        <img src="/Foodfy.png" alt="">
+        <a href="/">
+            <img src="/Foodfy.png" alt="">
+        </a>
         <a href="/users/admin/recipes">Receitas</a>
         <a href="/chefs/">Chefs</a>
         {%if session.is_admin == true%}
-        <a href="/users/admin/users" class='users'>Usuários</a>
-        <form action="/users/logout" method='post'>
-            <button>Sair</button>
-        </form>
-        
-        {% else%}
-        <form action="/users/logout" method='post'>
-            <button style='left: 400px; top: -103px;'>Sair</button>
-        </form>
-        {%endif%}
+            <a href="/users/admin/users" class='users'>Usuários</a>
+            <form action="/users/logout" method='post'>
+                <button>Sair</button>
+            </form>
+
+            {% else%}
+            <form action="/users/logout" method='post'>
+                <button style='left: 400px; top: -103px;'>Sair</button>
+            </form>
+            {%endif%}
+        </div>
     </div>
-</div>

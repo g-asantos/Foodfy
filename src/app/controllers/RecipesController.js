@@ -231,7 +231,7 @@ module.exports = {
     
     
     
-            return res.redirect(`/users/admin/users`)
+            return res.redirect(`/users/admin/recipes`)
 
         }catch(err){
             console.error(err)
@@ -282,7 +282,7 @@ module.exports = {
 
         const keys = Object.keys(req.body)
 
-
+        
         try{
 
             for (key of keys) {
@@ -290,10 +290,10 @@ module.exports = {
                     return res.send('Please fill all fields')
                 }
             }
+
+            
     
-            if(req.files.length == 0 ){
-                return res.send('Please put atleast one image')
-            }
+        
     
             if (req.body.removed_files) {
                 const removedFiles = req.body.removed_files.split(',')
@@ -336,11 +336,39 @@ module.exports = {
     
     
             let { ingredients, preparation, title, chef, information } = req.body
-    
+            
             ingredients = `{${ingredients}}`
             preparation = `{${preparation}}`
-    
-    
+            
+            for(ingredient in ingredients){
+                if(ingredient = ''){
+                    delete `${ingredient}`
+                    
+                }
+            }
+           
+            ingredients = ingredients.replace(',,', ',')
+            
+            if(ingredients[ingredients.length - 2] == ','){
+                ingredients = ingredients.slice(0, (ingredients.length - 2))
+                ingredients = `${ingredients}}`
+            }
+            
+            for(prep in preparation){
+                if(prep = ''){
+                    delete `${ingredient}`
+                    
+                }
+            }
+
+            preparation = preparation.replace(',', '')
+
+            if(preparation[preparation.length - 2] == ','){
+                preparation = preparation.slice(0, (preparation.length - 2))
+                preparation = `${preparation}}`
+            }
+            
+            
             await Recipe.update(req.body.id, {
                 title,
                 chef_id: chef,
@@ -375,9 +403,13 @@ module.exports = {
                     let destination = await Promise.resolve(result)
 
 
+                    if (destination.rows[0] != undefined && fs.existsSync(destination.rows[0].path) == true) {
 
+                        fs.unlinkSync(destination.rows[0].path)
+        
+                    }
 
-                    fs.unlinkSync(destination.rows[0].path)
+                    
                 }
 
 

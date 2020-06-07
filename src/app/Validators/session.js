@@ -28,7 +28,13 @@ async function login(req, res, next) {
         error: "Senha Incorreta"
     })
 
-
+    if(req.session.userId){
+        req.session.destroy()
+        return res.render('user/login', {
+            user: req.body,
+            error: "Já havia um usuário logado, por favor tente novamente"
+        })
+    }
 
 
     req.user = user
