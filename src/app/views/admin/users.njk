@@ -3,8 +3,7 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/UserStyles.css">
-
+        {%include 'parts/styles.njk'%}
     </head>
 
     <body>
@@ -12,19 +11,18 @@
         {%include 'parts/header.njk'%}
 
         <section>
-            <div class="adminContainer">
+            <div class="usersAdminContainer">
                 <h1>Usuários</h1>
 
                 <form action="/users/admin/register" method='get' id='newUser'>
-                <button type='submit' class='edit master' form='newUser' id='save'>Novo</button>
-                 
+                    <button type='submit' class='edit master' form='newUser' id='save'>Novo</button>
+
                 </form>
-                
-                
+
             </div>
 
             {%include 'parts/messages.njk'%}
-                <div class="allUsers">
+            <div class="allUsers">
                 {%for result in results%}
                     <div class="listContainer">
                         <div class="detailsContainer">
@@ -41,22 +39,22 @@
                         <div class="buttons">
                             <a href="/users/admin/{{result.id}}/edit">Editar</a>
 
-                            <form id='delete_{{result.id}}' method="POST" action='/users/admin/users/{{result.id}}?_method=DELETE'>
+                            <form id='delete_{{result.id}}' class='deleteResults' method="POST" action='/users/admin/users/{{result.id}}?_method=DELETE'>
                                 <button class='cancel' type="submit" form='delete_{{result.id}}'>Deletar</button>
                                 <input type="hidden" name="id" value={{result.id}}>
                                 <input type="hidden" name="is_admin" value={{result.is_admin}}>
-                                
+
                             </form>
-                            
+
                         </div>
 
                     </div>
-                    
-                    {%endfor%}
-                
-                    </div>
-                    
 
+                    {%endfor%}
+
+                </div>
+            </section>
+            <script src="/scripts.js"></script>
             </body>
 
         </html>

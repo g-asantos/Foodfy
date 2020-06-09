@@ -3,7 +3,7 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/UserStyles.css">
+        {%include 'parts/styles.njk'%}
 
     </head>
 
@@ -39,6 +39,7 @@
                 </form>
 
                 {%include 'parts/messages.njk'%}
+                <script src="/scripts.js"></script>
             </body>
 
         </html>

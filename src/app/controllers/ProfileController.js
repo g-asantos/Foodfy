@@ -7,9 +7,8 @@ module.exports = {
 
     async index(req, res) {
 
-
-        
-        const userEmail = await db.query(`SELECT users.email FROM users WHERE reset_token = $1`, [req.query.token])
+        try{
+            const userEmail = await db.query(`SELECT users.email FROM users WHERE reset_token = $1`, [req.query.token])
 
 
         const user = await User.findOne({ email: userEmail.rows[0].email })
@@ -21,6 +20,12 @@ module.exports = {
 
 
         return res.render('admin/profile', { user })
+
+        }catch(err){
+            console.error(err)
+        }
+        
+        
     },
     async put(req, res) {
 

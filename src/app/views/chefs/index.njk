@@ -5,15 +5,9 @@
 
         <head>
             <title>Foodfy</title>
-            <link rel="stylesheet" href="/styles/styles.css">
+            {%include 'parts/styles.njk'%}
         </head>
-        <header id='adHead'>
-            <div class="admin_head">
-            <h1 style='color:white'>Foodfy</h1>
-            <a href="/receitas" class='recipes_admin'>RECEITAS</a>
-            <a href="/chefs" class='chefs_link_admin'>CHEFS</a>
-            </div>
-        </header>
+        {%include 'parts/headerBlack.njk'%}
 
         <h2 class='manage'>Gerenciar chefs</h2>
         <div class="adminchefContainer">
@@ -32,7 +26,7 @@
                     </div>
                     <div class='card__content_chef'>
                         <p>{{chef.name}}</p>
-                       <a href="/admin/{{chef.id}}" class="see">Visualizar</a>
+                       <a href="/{{chef.id}}" class="see">Visualizar</a>
                     
                     </div>
                     

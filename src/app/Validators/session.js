@@ -28,7 +28,13 @@ async function login(req, res, next) {
         error: "Senha Incorreta"
     })
 
-
+    if(req.session.userId){
+        req.session.destroy()
+        return res.render('user/login', {
+            user: req.body,
+            error: "Já havia um usuário logado, por favor tente novamente"
+        })
+    }
 
 
     req.user = user
@@ -117,20 +123,6 @@ async function edit(req,res,next){
     next()
 }
 
-async function editPut(req,res,next){
-    
-
-    const results = await db.query('SELECT * FROM users WHERE id = $1', [req.session.userId])
-
-    if(req.body.id != req.session.userId && results.rows[0].is_admin != true  ){
-        return res.render('user/login', {
-            user: req.body,
-            error: 'Você não tem autorização para editar este usuário.'
-    }) 
-
-    }
-    next()
-}
     
 
 
@@ -139,6 +131,5 @@ module.exports = {
     login,
     forgot,
     reset,
-    edit,
-    editPut
+    edit
 }

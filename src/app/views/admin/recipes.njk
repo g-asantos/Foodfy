@@ -3,7 +3,7 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/UserStyles.css">
+        {%include 'parts/styles.njk'%}
 
     </head>
 
@@ -12,7 +12,7 @@
         {%include 'parts/header.njk'%}
 
         <section>
-            <div class="adminContainer">
+            <div class="usersAdminContainer">
                 <h1>Receitas</h1>
 
                 <form action="/receitas/create" method='get' id='newUser'>
@@ -36,7 +36,7 @@
                         <div class="buttons">
                             <a href="/receitas/{{result.id}}/edit">Editar</a>
 
-                            <form id='delete_{{result.id}}' method="POST" action='/receitas?_method=DELETE'>
+                            <form id='delete_{{result.id}}' class='deleteResults' method="POST" action='/receitas?_method=DELETE'>
                                 <button class='cancel' type="submit" form='delete_{{result.id}}'>Deletar</button>
                                 <input type="hidden" name="id" value={{result.id}}>
                                 <input type="hidden" name="is_admin" value={{result.is_admin}}>
@@ -50,7 +50,7 @@
                     {%endfor%}
 
                 </div>
-
+            <script src="/scripts.js"></script>
             </body>
 
         </html>

@@ -3,18 +3,16 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/styles2.css">
+        {%include 'parts/styles.njk'%}
 
     </head>
 
     <body>
 
-        <header>
-            <h1 id='detailFix'><img src="/Foodfy.png" alt="" ></h1>
-        </header>
+        {%include 'parts/headerBlack.njk'%}
 
         <section>
-            <div class="adminContainer">
+            <div class="editContainer">
                 <h1>Editando chef</h1>
                 <button type='submit' class='edit master' form='rewrite'>Salvar Chef</button>
                 <button type='submit' class='edit master' form='delete' id='delButton'>Deletar Chef</button>
@@ -62,7 +60,7 @@
 
             </section>
             <script src="/photosUpload.js"></script>
-            
+            <script src="/scripts.js"></script>
         </body>
 
     </html>

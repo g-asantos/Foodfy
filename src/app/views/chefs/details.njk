@@ -3,29 +3,25 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/styles2.css">
+        {%include 'parts/styles.njk'%}
 
     </head>
-    <header id='adHead'>
-        <div class="admin_head">
-            <h1><img src="/Foodfy.png" alt="" ></h1>
-            <a href="/receitas" class='recipes_admin'>RECEITAS</a>
-            <a href="/chefs" class='chefs_link_admin'>CHEFS</a>
-        </div>
-    </header>
-    <body>
+    {%include 'parts/headerBlack.njk'%}
+    <body style='min-height: 1000px;'>
 
         <section>
 
-            <div class='card' id='{{item.id}}'>
+            <div class='card' id='{{chef.id}}'>
                 <div class="adminContainer">
                     <h1>Chef:
                         {{chef.name}}</h1>
-                    <a href="{{chef.id}}/edit" class='edit'>Editar Chef</a>
+                    <form action='{{chef.id}}/edit' id='buttonForm'>
+                        <button type='submit' class='edit'>Editar Chef</button>
+                    </form>
                 </div>
 
                 <div class='card__content__chef__admin'>
-                    <img src="http://localhost:5000/images/{{chefFiles}}" alt="{{chef.title}}"/>
+                    <img src="{{chefFiles}}" alt="{{chef.title}}"/>
                     <div class="chef__details">
                     <p id='card__info__chef__name'>{{chef.name}}</p>
                     <p id='card__info__chef'>{{chef.total_recipes}}
@@ -42,15 +38,15 @@
             {% for recipe in recipesMade %}
                 {%if chef.id == recipe.chef_id %}
                     <div class='card_admin_recipe' id='{{recipe.id}}'>
-                         {%for i in range(loop.revindex0 , loop.revindex )%}
+                         
                          
                         <div class='card__image-container_recipe'>
                                
-                                <img src="http://localhost:5000/images/{{recipeFiles[(recipesMade.length - 1) - i ]}}" alt="{{recipe.title}}"/>
+                                <img src="{{recipeFiles[0]}}" alt="{{recipe.title}}"/>
                                 
                             </div>
                                 
-                             {%endfor%}
+                            
                             <div class='card__content_recipe'>
                                 <p>{{recipe.title}}</p>
                                 <div class='card__info_recipe'>

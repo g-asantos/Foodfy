@@ -12,62 +12,63 @@ module.exports = {
     },
     async post(req, res) {
 
-        const { name, email, id } = req.body
+        const { name, email } = req.body
         
+        const token = crypto.randomBytes(20).toString("hex")
 
-
-
-        if (req.body.admin) {
-            const userId = await User.create({ name, email, is_admin: true })
-            
-
-            const token = crypto.randomBytes(20).toString("hex")
-
-            let now = new Date()
-            now = now.setHours(now.getHours() + 1)
-
-            await User.newUpdate(userId, {
-                reset_token: token,
-                reset_token_expires: now
-            })
-            await mailer.sendMail({
-                to: email,
-                from: 'no-reply@foodfy.com.br',
-                subject: 'Escolha sua senha',
-                html: `<h2>Bem vindo!</h2>
-            <p>Clique no link abaixo para definir sua senha</p>
-            <p> <a href='localhost:5000/users/admin/profile?token=${token}' target="_blank"> DEFINIR SENHA</a>  </p>
-            `
-            })
-            
-            return res.redirect('/users/admin/users')
-
-        } else {
-            const userId = await User.create({ name, email, is_admin: false })
-            
-
-
-            const token = crypto.randomBytes(20).toString("hex")
-
-            let now = new Date()
-            now = now.setHours(now.getHours() + 1)
-
-            await User.newUpdate(userId, {
-                reset_token: token,
-                reset_token_expires: now
-            })
-            await mailer.sendMail({
-                to: email,
-                from: 'no-reply@foodfy.com.br',
-                subject: 'Escolha sua senha',
-                html: `<h2>Bem vindo!</h2>
-            <p>Clique no link abaixo para definir sua senha</p>
-            <p> <a href='localhost:5000/users/admin/profile?token=${token}' target="_blank"> DEFINIR SENHA</a>  </p>
-            `
-            })
-            
-            return res.redirect('/users/admin/users')
+        try{
+            if (req.body.admin) {
+                const userId = await User.create({ name, email, is_admin: true, password: token })
+                
+    
+                
+                
+                let now = new Date()
+                now = now.setHours(now.getHours() + 1)
+    
+                await User.newUpdate(userId.rows[0].id, {
+                    reset_token: token,
+                    reset_token_expires: now
+                })
+                await mailer.sendMail({
+                    to: email,
+                    from: 'no-reply@foodfy.com.br',
+                    subject: 'Escolha sua senha',
+                    html: `<h2>Bem vindo!</h2>
+                <p>Clique no link abaixo para definir sua senha</p>
+                <p> <a href='localhost:5000/users/admin/profile?token=${token}' target="_blank"> DEFINIR SENHA</a>  </p>
+                `
+                })
+                
+                return res.redirect('/users/admin/users')
+    
+            } else {
+                const userId = await User.create({ name, email, is_admin: false, password: token })
+                
+    
+                let now = new Date()
+                now = now.setHours(now.getHours() + 1)
+    
+                await User.newUpdate(userId.rows[0].id, {
+                    reset_token: token,
+                    reset_token_expires: now
+                })
+                await mailer.sendMail({
+                    to: email,
+                    from: 'no-reply@foodfy.com.br',
+                    subject: 'Escolha sua senha',
+                    html: `<h2>Bem vindo!</h2>
+                <p>Clique no link abaixo para definir sua senha</p>
+                <p> <a href='localhost:5000/users/admin/profile?token=${token}' target="_blank"> DEFINIR SENHA</a>  </p>
+                `
+                })
+                
+                return res.redirect('/users/admin/users')
+            }
+        }catch(err){
+            console.error(err)
         }
+        
 
 
 
@@ -75,7 +76,9 @@ module.exports = {
     },
     async edit(req, res) {
 
-        const { userId: id } = req.session
+
+        try{
+            const { userId: id } = req.session
         const userEmail = await db.query(`SELECT users.email FROM users WHERE id = $1`, [id])
 
 
@@ -87,19 +90,23 @@ module.exports = {
 
 
 
-        return res.render('user/edit', { user })
+        return res.render('user/edit', { user, session: req.session })
+        }catch(err){
+            console.error(err)
+        }
+        
     },
     async list(req, res) {
 
         const users = await db.query('SELECT users.* FROM users')
 
         const results = users.rows
-
+        
         
         
         
         req.session.save(() => {
-            return res.render('admin/users', { results })
+            return res.render('admin/users', { results, session: req.session })
         })
         
     },
@@ -111,7 +118,7 @@ module.exports = {
         
         
         req.session.save(() => {
-            return res.render('admin/recipes', { results })
+            return res.render('admin/recipes', { results, session: req.session })
         })
         
 

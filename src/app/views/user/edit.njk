@@ -3,7 +3,7 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/UserStyles.css">
+         {%include 'parts/styles.njk'%}
 
     </head>
 
@@ -11,13 +11,13 @@
         {%include 'parts/header.njk'%}
 
         <section>
-            <div class="adminContainer">
+            <div class="userUpdateContainer">
                 <h1>Atualizar Usuário</h1>
                 <button class='cancel' type="submit" form='delete' style='background: #DC4747;'>Deletar</button>
                 <button class='save' type="submit" form='creation'>Salvar</button>
             </div>
             {%include 'parts/messages.njk'%}
-            <form id='creation' method='POST' action="/users/admin/users?_method=PUT">
+            <form id='creation' class='userEdit' method='POST' action="/users/admin/users?_method=PUT">
 
                 {% include 'user/layout.njk'%}
 
@@ -30,7 +30,7 @@
 
             <input type="hidden" name="id" value={{user.id}}>
         </form>
-        
+        <script src="/scripts.js"></script>
     </body>
 
 </html>

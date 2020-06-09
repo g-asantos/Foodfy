@@ -1,47 +1,66 @@
-const crypto  = require('crypto')
+const crypto = require('crypto')
 const mailer = require('../lib/mailer')
 const User = require('../models/user')
-const {hash} = require('bcryptjs')
+const { hash } = require('bcryptjs')
 
 
 
 module.exports = {
-    loginForm(req,res){
-        
+    loginForm(req, res) {
+
         return res.render('user/login')
     },
-    logout(req,res){
+    logout(req, res) {
         req.session.destroy()
-        return res.redirect('/')
+        return res.redirect('/users/login')
     },
-    login(req,res){
-        req.session.userId = req.user.id
-        
-        req.session.save(() => {
-            return res.redirect(`admin/${req.session.userId}/edit`)
-        })
-        
+    async login(req, res) {
+
+        try {
+
+            
+
+            let results = await User.adminStatus(req.user.id)
+
+
+            if (results == true) {
+                req.session.is_admin = true
+            }
+
+            
+
+            req.session.userId = req.user.id
+
+            req.session.save(() => {
+                return res.redirect(`admin/${req.session.userId}/edit`)
+            })
+
+        } catch (err) {
+            console.error(err)
+        }
+
+
     },
-    forgotForm(req,res){
+    forgotForm(req, res) {
 
         return res.render('user/forgot-password')
     },
-    async forgot(req,res){
+    async forgot(req, res) {
 
 
         try {
 
             const user = req.user
             const token = crypto.randomBytes(20).toString("hex")
-           
+
             let now = new Date()
             now = now.setHours(now.getHours() + 1)
-            
+
             await User.newUpdate(user.id, {
                 reset_token: token,
                 reset_token_expires: now
             })
-    
+
             await mailer.sendMail({
                 to: user.email,
                 from: 'no-reply@foodfy.com.br',
@@ -51,44 +70,44 @@ module.exports = {
                 <p> <a href='localhost:5000/users/password-reset?token=${token}' target="_blank"> RECUPERAR SENHA</a>  </p>
                 `
             })
-    
+
             return res.render('user/forgot-password', {
-                success: 'Sucesso! Verifique seu email'   
+                success: 'Sucesso! Verifique seu email'
             })
-    
 
 
-        } catch(err){
+
+        } catch (err) {
             return res.render('user/forgot-password', {
                 error: 'Erro inesperado. Tente novamente'
             })
         }
 
 
-        
+
     },
-    resetForm(req,res){
-        return res.render('user/password-reset', {token: req.query.token})
+    resetForm(req, res) {
+        return res.render('user/password-reset', { token: req.query.token })
     },
-    async reset(req,res){
+    async reset(req, res) {
         const user = req.user
-        const { password, token} = req.body 
+        const { password, token } = req.body
 
         try {
 
-        const newPassword = await hash(password, 8)
-        await User.newUpdate(user.id, {
-            password: newPassword,
-            reset_token:'',
-            reset_token_expires: ''
+            const newPassword = await hash(password, 8)
+            await User.newUpdate(user.id, {
+                password: newPassword,
+                reset_token: '',
+                reset_token_expires: ''
 
-        })
-        return res.render('user/login', {
-            user: req.body,
-            success: "Senha Atualizada! Faça o seu login"
-        })
+            })
+            return res.render('user/login', {
+                user: req.body,
+                success: "Senha Atualizada! Faça o seu login"
+            })
 
-        } catch(err){
+        } catch (err) {
             console.error(err)
             return res.render('user/password-reset', {
                 user: req.body,

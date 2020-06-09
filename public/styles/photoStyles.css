@@ -1,189 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
 
-*{
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
-}
-body {
-    max-width: 1700px;
-    width: 100%;
-    height: 1041px;
-}
-html {
-    overflow-x: hidden;
-}   
-header h1 {
-    font-weight: normal;
-    margin-left: 231px;
-    margin-top: 36.1px;
-}
-
-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    position: relative;
-}
-
-h1#detailFix{
-    position: relative;
-    bottom: 20px;
-}
-
-
-a#detailRecipes{
-    position: absolute;
-    font-family: Helvetica;
-    font-size: 15px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    left: 372px;
-    top: 23px;
-
-}
-
-a#detailChefs{
-    position: absolute;
-    text-decoration: none;
-    font-family: Helvetica;
-    font-size: 15px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    left: 471px;
-    top: 23px;
-}
-
-.container {
-    background: #FBDFDB;
-    border-radius: 30px;
-    border-radius: 30px;
-    text-align: center;
-    width: 940px ;
-    height: 366px;
-    position: absolute;
-    left: 230px;
-    top: 93px;
-}
-
-.container strong {
-    font-size: 32px;
-    position: absolute;
-    left: 60px;
-    top: 117px;
-}
-
-.container p {
-    opacity: 0.7;
-    font-family: Roboto-Regular;
-    font-size: 18px;
-    color: #000000;
-    line-height: 28px;
-    width: 316px;
-    height: 84px;
-    position: absolute;
-    left: 60px;
-    top: 165px;
-    margin: 0 auto;
-    text-align: left;
-}
-.container img {
-    height: 300px; 
-    width: 216px;
-    position: absolute;
-    left: 624px;
-    top: 66px;
-}
-h2 {
-    position: relative;
-    font-size: 24px;
-    color: #111111;
-    left: 230px;
-    top: 113px;
-}
-
-h3 {
-    position: relative;
-    font-size: 20px;
-    color: #111111; 
-    left: 230px;
-    top: 230px;
-}
-
-h4 {
-    position: relative;
-    font-size: 20px;
-    color: #111111;
-    left: 230px;
-    top: 350px;
-}
-
-a.about {
-    width: 50%;
-    position: absolute;
-    left: 500px;
-    top: 38px;
-    color: black;
-    text-decoration: none;
-}
-
-a.recipes {
-    width: 50%;
-    position: absolute;
-    left: 600px;
-    top: 38px;
-    color: black;
-    text-decoration: none;
-}
-footer {
-    background: #EEEEEE;
-    left: 0px;
-    top: 1041px;
-    position: relative;
-    width: 1600px;
-    height: 62px;
-}
-
-footer p {
-    font-size: 14px;
-    color: #999999;
-    text-align: center;
-    
-    
-}
-
-
-.card {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-}
-
-.recipe-title p {
-    font-family: Helvetica;
-    font-size: 24px;
-    color: #111111;
-
-    position: absolute;
-    left: 230px;
-    top: 150px;
-    font-weight: bold;
-    
-}
-button#recipeEdit{
-    position: absolute;
-    left: 800px;
-    top: 5px;
-    
-}
-
-a.linkedit {
-    font-family: Helvetica;
-    font-size: 16px;
-    color: #FFFFFF;
-    text-decoration: none;
-
-}
 /* image gallery */
 .card__image-container .highlight > img {
     position: absolute;
@@ -192,7 +7,7 @@ a.linkedit {
     height: 280px;
     left: 230px;
     top: 200px;
-   
+    object-fit: cover;
 }
 
 .card__image-container .filePreview {
@@ -202,7 +17,7 @@ a.linkedit {
     grid-gap: 10px;
     position: relative;
     right: 350px;
-    top: 368px;
+    top: 430px;
 }
 
 
@@ -225,32 +40,22 @@ a.linkedit {
 }
 
 
-
-
-
-.card__content {
-    font-weight: bold;
-    font-size: 36px;
-    color: #111111;
-    
-    
-}
-
-.card__info {
-    font-size: 20px;
-    color: #777777;
-    
-}
-
 .card #card__profile {
     display:flex;
     align-items: center;
     align-self: center;
     align-content: center;
     flex-direction: column;
-    position: absolute;
-    left: 541px;
-    top: 555px;
+    position: relative;
+    left: -10px;
+    top: 480px;
+}
+
+div.detailsInfoContainer{
+    display: flex;
+    flex-direction: column;
+    position:relative;
+    top: -50px;
 }
 
 .ingredients h2 {
@@ -354,10 +159,78 @@ a.linkedit {
 .adminContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    position: absolute;
+    left: 230px;
+    top: 200px;
+    gap: 800px;
+}
+
+.editContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     position: relative;
     left: 230px;
-    top: 63px;
+    top: 100px;
     gap: 280px;
+}
+.createContainer{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    left: 230px;
+    top: 80px;
+
+}
+
+.userUpdateContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    left: 230px;
+    top: -90px;
+    gap: 280px;
+}
+
+.userUpdateContainer button{
+    width: 139px;
+    height: 37px;
+    border-radius: 4px;
+}
+
+.userUpdateContainer button.cancel{
+    background: #DC4747;
+    border: 1px solid #DC4747;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    position: relative;
+    bottom: 3px;
+    left: 20px;
+}
+
+.userUpdateContainer button.save{
+    background: #7159C1;
+    border: 1px solid #7159C1;
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    position: relative;
+    top: -320px;
+    left: 800px;
+
+}
+
+
+.createContainer button {
+    width: 139px;
+    height: 37px;
+    border-radius: 4px;
+    left: 50px;
 }
 
 .edit{
@@ -365,7 +238,7 @@ a.linkedit {
     width: 136px;
     height: 37px;
     border-radius: 4px;
-    font-family: Roboto-Bold;
+    font-family: Roboto;
     font-size: 16px;
     color: #FFFFFF;
     text-decoration: none;
@@ -379,6 +252,15 @@ a.linkedit {
 }
 
 
+form#creationChef {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 230px;
+    top: -250px;
+}
+
+
 form {
     display: flex;
     flex-direction: column;
@@ -386,6 +268,15 @@ form {
     left: 230px;
     top: 113px;
 }
+
+form.userEdit {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 230px;
+    top: -420px;
+}
+
 
 form input{
     width: 940px;
@@ -419,11 +310,6 @@ form button {
     display: grid;
 }
 
-header{
-    background-color: black;
-    color: white;
-    
-}
 
 .item > div {
     font-weight: bold;
@@ -447,28 +333,10 @@ header{
     top: -200px;
 }
 
-.card__image-container_chef img {
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    left: 600px;
-    top: 207px;
-
-}
-
 .card__image-container_recipe {
     border-radius: 8.57px;
     height: 80px;
     width: 172px;
-}
-
-.recipeContainerOriginal {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: absolute;
-    left: 230px;
-    top: 637px;
 }
 
 
@@ -487,7 +355,8 @@ div.card__image-container_recipe img {
     font-size: 18px;
     color: #111111;
     margin-left: 20px;
-
+    display: grid;
+    grid-template-columns: max-content;
 }
 
 
@@ -514,15 +383,6 @@ color: #6558C3;
     margin-bottom: 20px;
 }
 
-strong {
-    font-size: 24px;
-    color: #111111;
-    position: absolute;
-    left: 230px;
-    top: 557px;
-    margin-bottom: 30px;
-}
-
 .card__content_recipe p {
     margin-bottom: 10px;
     margin-right: 100px;
@@ -537,34 +397,6 @@ strong {
     left: 604px;
     top: 437px;
 
-}
-
-
-
-
-.admin_head {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.recipes_admin {
-    font-weight: bold;
-    font-size: 15px;
-    color: #999999;
-    text-align: left;
-    text-decoration: none;
-    margin-top: 48px;
-    margin-left: 50px;
-}
-    
-.chefs_link_admin{
-    font-weight: bold;
-    font-size: 15px;
-    color: #999999;
-    text-align: left;
-    text-decoration: none;
-    margin-top: 48px;
-    margin-left: 30px;
 }
 
 .chefSelect {
@@ -614,22 +446,20 @@ textarea {
 .card__content__chef__admin {
     display: flex;
     flex-direction: column;
-    position: relative;
-    left: 500px;
-    bottom: 110px;
+    position: absolute;
+    left: 600px;
+    top: 200px;
     text-align: center;
+    align-items: center;
 }
 
-.chef__details {
-    position: relative;
-    right: 650px;
-}
 
 #card__info__chef__name {
 font-weight: bold;
 font-size: 36px;
 color: #111111;
-
+margin-top: 30px;
+margin-bottom: 4px;
 }
 
 

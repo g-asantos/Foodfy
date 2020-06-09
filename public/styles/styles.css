@@ -5,17 +5,36 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    max-width: 1700px;
+    
 }
 
 html {
     overflow-x: hidden;
+    height: 100%;
+    
 }   
+
+body{
+    min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+body.detailsBody{
+    min-height: 1500px;
+    display: flex;
+    flex-direction: column;
+}
 header img {
     font-weight: normal;
     margin-left: 231px;
     margin-top: 36.1px;
     padding-bottom: 26.1px;
+}
+
+header img.black{
+    position: relative;
+    margin: 0;
 }
 
 
@@ -26,6 +45,76 @@ header {
 }
 
 
+header h1 {
+    font-weight: normal;
+    margin-left: 231px;
+    margin-top: 36.1px;
+}
+
+
+
+h1#detailFix{
+    position: relative;
+    bottom: 20px;
+}
+
+
+a#detailRecipes{
+    position: absolute;
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    left: 372px;
+    top: 23px;
+
+}
+
+a#detailChefs{
+    position: absolute;
+    text-decoration: none;
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    left: 471px;
+    top: 23px;
+}
+
+
+
+
+
+.recipe-title p {
+    font-family: Helvetica;
+    font-size: 24px;
+    color: #111111;
+
+    position: absolute;
+    left: 230px;
+    top: 150px;
+    font-weight: bold;
+    
+}
+
+button.linkedit {
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    position: relative;
+    left: 1040px;
+    top: 140px;
+}
+form#buttonForm{
+    display: initial;
+    position: initial;
+    left: 0;
+    top: 0;
+    
+}
+
+
 .container {
     background: #FBDFDB;
     border-radius: 30px;
@@ -33,9 +122,9 @@ header {
     text-align: center;
     width: 940px ;
     height: 366px;
-    position: absolute;
+    position: relative;
     left: 230px;
-    top: 93px;
+    
 }
 
 .container strong {
@@ -66,61 +155,85 @@ header {
     left: 624px;
     top: 66px;
 }
-h2 {
+
+div.aboutContainer{
+    display: flex;
+    flex-direction: column;
     position: relative;
-    font-size: 24px;
-    color: #111111;
-    left: 230px;
-    top: 113px;
+    left: 195px;
+    top: 98px;
 }
 
-h3 {
-    position: relative;
-    font-size: 20px;
-    color: #111111; 
-    left: 230px;
-    top: 230px;
+.aboutContainer div.itemOne{
+    margin: 30px;
+}
+
+.aboutContainer div.itemOne h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #111111;
+    
+}
+
+.aboutContainer div.itemOne p#LoremOne {
+   
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    
+    width: 940px;
+    height: 280px;
+}
+
+.aboutContainer div.itemTwo{
+    margin: 30px;
+}
+
+.aboutContainer div.itemTwo h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #111111;
+    
+}
+
+.aboutContainer div.itemTwo p#LoremTwo {
+   
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    width: 940px;
+    height: 280px;
+}
+
+.aboutContainer div.itemThree{
+    margin: 30px;
+}
+
+.aboutContainer div.itemThree h4 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #111111;
+    
+}
+
+.aboutContainer div.itemThree p#LoremThree {
+   
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+    width: 940px;
+    height: 280px;
 }
 
 h4 {
-    position: relative;
+   
     font-size: 20px;
     color: #111111;
-    left: 230px;
-    top: 350px;
-}
-p#trash1 {
-    position: relative;
-    font-size: 18px;
-    color: #444444;
-    line-height: 28px;
-    left: 230px;
-    top: 161px;
-    width: 940px;
-    height: 280px;
+    
 }
 
-p#trash2 {
-    position: relative;
-    font-size: 18px;
-    color: #444444;
-    line-height: 28px;
-    width: 940px;
-    height: 280px;
-    left: 230px;
-    top: 290px;
-}
 
-p#trash3 {
-    position: relative;
-    font-size: 18px;
-    color: #444444;
-    line-height: 28px;
-    width: 940px;
-    height: 280px;
-    left: 230px;
-    top: 390px;
-}
+
 a.about {
     width: 50%;
     position: absolute;
@@ -128,6 +241,7 @@ a.about {
     top: 38px;
     color: black;
     text-decoration: none;
+
 }
 
 a.recipes {
@@ -139,20 +253,28 @@ a.recipes {
     text-decoration: none;
 }
 
-.recipeContainerOriginal{
-    display:grid;
-    grid-template-columns: 300px 300px 300px;
-    gap: 20px;
+.recipeContainerFrontPage{
+    display: grid;
+    grid-template-columns: 320px 320px 320px ;
     position: relative;
     left: 230px;
-    top: 460px;
+    top: 100px;
+}
+
+.recipeContainerOriginal{
+    display:grid;
+    grid-template-columns: 600px 600px;
+    gap: 20px;
+    position: absolute;
+    left: 230px;
+    top: 660px;
     
 }
 
 
 .recipeContainer {
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 320px 320px 320px;
     margin-left: 230px;
     margin-top: 163px;
     
@@ -169,6 +291,9 @@ a.recipes {
     margin-bottom: 20px;
 }
 
+.card.details{
+    position: relative;
+}
 
 .card__content {
     font-size: 18px;
@@ -177,8 +302,15 @@ a.recipes {
     
 }
 
+.card__content#recipe_text{
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 36px;
+    color: #111111;
+}
+
 .card__info {
-    font-size: 14px;
+    font-size: 20px;
     color: #777777;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -189,7 +321,15 @@ strong {
     color: #111111;
     position: absolute;
     left: 230px;
-    top: 509px;
+    top: 609px;
+}
+
+strong.topRecipes{
+    font-size: 24px;
+    color: #111111;
+    position: absolute;
+    left: 230px;
+    top: 500px;
 }
 div.card__image-container img {
     width: 300px;
@@ -203,11 +343,9 @@ div.card__image-container img {
 
 footer {
     background: #EEEEEE;
-    left: 0px;
-    top: 100px;
     position: relative;
-    width: 1600px;
     height: 62px;
+    top: 30vh;
 }
 
 footer p {
@@ -218,19 +356,15 @@ footer p {
     
 }
 
-footer#second {
-    top: 400px;
+div.footerContainer{
+    position: relative;
+    top: 760px;
 }
-
-footer#third{
-    top: 600px;
-}
-
-
 #adHead {
     background-color: black;
     box-sizing: border-box;
     max-width: 1700px;
+    max-height: 100px;
 }
 
 
@@ -246,12 +380,6 @@ footer#third{
     
 }
 
-.infoContainer {
-    position: relative;
-    left:320px;
-    bottom: 160px;
-
-}
 
 .see {
     text-decoration: none;
@@ -262,8 +390,11 @@ footer#third{
 
 
 .userchefContainer {
-    margin-top: 113px;
-    margin-left: 230px;
+    position: absolute;
+    left: 220px;
+    top: 200px;
+    display: grid;
+    grid-template-columns: 250px 250px 250px 250px;
 }
 
 .userchefContainer .card {
@@ -321,7 +452,7 @@ a.chefs_link {
 }
 
 .recipes_admin {
-font-weight: bold;
+
 font-size: 15px;
 color: #999999;
 text-align: left;
@@ -331,7 +462,7 @@ margin-left: 50px;
 }
 
 .chefs_link_admin{
-font-weight: bold;
+
 font-size: 15px;
 color: #999999;
 text-align: left;
@@ -340,19 +471,25 @@ margin-top: 48px;
 margin-left: 30px;
 }
 
-header form {
+header form.search{
     position: absolute;
-    left: 910px;
+    left: 830px;
     top: 25px;
+    display: initial;
 }
 
-header form button {
+header form button.search {
     background: #6558C3;
 border-radius: 4px;
 width: 91px;
 height: 37px;
 color: white;
 border: 1px white solid;
+margin-bottom: 0;
+font-weight: initial;
+display: initial;
+text-align: center;
+font-size: initial;
 }
 
 header form input {
@@ -374,3 +511,6 @@ top: 150px;
 margin-bottom: 20px;
 }
 
+.active {
+    font-weight: bold;
+}

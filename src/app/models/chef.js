@@ -1,9 +1,12 @@
 const { date } = require('../lib/utils')
 const db = require('../config/db')
+const Base = require('./Base')
 
+Base.init({table: 'chefs'})
 
 
 module.exports = {
+    ...Base,
     all(callback) {
         db.query(`SELECT chefs.*, count(recipes) AS total_recipes
         FROM chefs
@@ -18,29 +21,6 @@ module.exports = {
         })
 
     },
-    create({ name, file_id }) {
-        const query = `
-            INSERT INTO chefs (
-                name,
-                file_id,
-                created_at
-            ) VALUES ($1, $2, $3)
-            RETURNING id
-        
-        `
-        const values = [
-            name,
-            file_id,
-            date(Date.now()).iso
-        ]
-
-
-        return db.query(query, values, function (err) {
-            if (err) throw `Database error! ${err}`
-
-
-        })
-    },
     find(id, callback) {
         db.query(`SELECT chefs.*,      
         count(recipes) AS total_recipes
@@ -52,31 +32,6 @@ module.exports = {
 
             callback(results.rows[0])
         })
-    },
-    update(id,{file_id , name}, callback) {
-        const query = `
-            UPDATE chefs SET
-            file_id=($1),
-            name=($2)
-            WHERE id = $3
-            
-        `
-
-        const values = [
-            file_id,
-            name,
-            id
-        ]
-
-
-        db.query(query, values, function (err, results) {
-            if (err) throw `Database error! ${err}`
-
-            return callback
-        })
-
-
-
     },
     delete(id, callback) {
         db.query(`DELETE FROM chefs USING files

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Foodfy</title>
+        {%include 'parts/styles.njk'%}
+
+    </head>
+
+    <body class='detailsBody'>
+
+        {%include 'parts/headerBlack.njk'%}
+        <section>
+            
+            <div class='card details' id='{{recipe.id}}'>
+                <div class="recipe-title">
+                    <p>Receita:
+                        {{recipe.title}}</p>
+                    <form action='/receitas/{{recipe.id}}/edit' id='buttonForm'>
+                        <button type='submit' class='edit master linkedit'>Editar Receita</button>
+                    </form>
+                </div>
+                <div class='card__image-container'>
+                    <div class="highlight">
+
+                        <img src="{{files[0].src}}{{files[0].path}}" alt="{{file.name}}" srcset="">
+                    </div>
+                    <div class="filePreview">
+                        {%for i in range(0, files.length) -%}
+
+                            <img src="{{files[i].src}}{{files[i].path}}" alt="{{file.name}}" {%if loop.index0 ==0 %} class='active' {%endif%} onclick='ImageGallery.setImage(event)'/>
+                            {%-endfor%}
+                        </div>
+                    </div>
+                    <div id="card__profile">
+                        <div class='card__content' id='recipe_text'>
+                            <p>
+                                {{recipe.title}}</p>
+                        </div>
+                        <div class='card__info'>
+                            <p>por
+                                {{recipe.chef_name}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailsInfoContainer">
+                <div class="ingredients">
+                    <h2>Ingredientes</h2>
+                    <h5>ESCONDER</h5>
+                    <ul class='topic__content'>
+                        {% for recipe in recipe.ingredients%}
+                            <li>{{recipe}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="preparation">
+                    <h3>Modo de preparo</h3>
+                    <h5>ESCONDER</h5>
+
+                    <span class='topic__content'>
+                        {% for preparation in recipe.preparation%}
+                            <p>{{preparation}}</p>
+                        {% endfor %}
+                    </span>
+
+                </div>
+
+                <div class="information">
+                    <h4>Informações adicionais</h4>
+                    <h5>ESCONDER</h5>
+                    <p class='topic__content'>{{recipe.information}}
+                    </div>
+                </div>
+            </section>
+
+            <div class="footerContainer">
+                {%include 'parts/footer.njk'%}
+            </div>
+            <script src="/scripts.js"></script>
+            <script src="/hideButton.js"></script>
+        </body>
+
+    </html>

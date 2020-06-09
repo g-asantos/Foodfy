@@ -3,18 +3,16 @@
 
     <head>
         <title>Foodfy</title>
-        <link rel="stylesheet" href="/styles/styles2.css">
+        {%include 'parts/styles.njk'%}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
     <body>
 
-        <header>
-            <h1 id='detailFix'><img src="/Foodfy.png" alt="" ></h1>
-        </header>
+        {%include 'parts/headerBlack.njk'%}
 
         <section>
-            <div class="adminContainer">
+            <div class="editContainer">
                 <h1>Editando receita</h1>
                 <button type='submit' class='edit master' form='rewrite'>Salvar Receita</button>
                 <button type='submit' class='edit master' form='delete' id='delButton'>Deletar Receita</button>
@@ -47,7 +45,7 @@
                         {%if files %}
                             {%for file in files%}
                                 <div class="photo" id={{file.id}}>
-                                    <img src="{{file.src}}{{file.name}}" alt="{{file.name}}">
+                                    <img src="{{file.path}}" alt="{{file.name}}">
                                     <i 
                                     class="material-icons"
                                     onclick='PhotosUpload.removeOldPhoto(event)' >close</i>
@@ -111,6 +109,7 @@
 
             <script src="/photosUpload.js"></script>
             <script src="/scripts.js"></script>
+            <script src="/addButton.js"></script>
         </body>
 
     </html>
