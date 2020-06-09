@@ -18,7 +18,7 @@ Developed during the LaunchBase bootcamp by RocketSeat.
 ### Installation
 
 
-Clone the project with
+Clone the project with:
 
 ```sh
 git clone https://github.com/g-asantos/Foodfy.git
@@ -56,9 +56,9 @@ Create an account and an inbox, then in the SMTP Settings - Integrations, select
 
 ## Built with
 
-- [HTML]
-- [CSS]
-- [Javascript]
+- HTML
+- CSS
+- Javascript
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
 - [Connect PG Simple](https://www.npmjs.com/package/connect-pg-simple)
