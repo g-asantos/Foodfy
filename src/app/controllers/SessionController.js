@@ -6,114 +6,114 @@ const { hash } = require('bcryptjs')
 
 
 module.exports = {
-    loginForm(req, res) {
+	loginForm(req, res) {
 
-        return res.render('user/login')
-    },
-    logout(req, res) {
-        req.session.destroy()
-        return res.redirect('/users/login')
-    },
-    async login(req, res) {
+		return res.render('user/login')
+	},
+	logout(req, res) {
+		req.session.destroy()
+		return res.redirect('/users/login')
+	},
+	async login(req, res) {
 
-        try {
-
-            
-
-            let results = await User.adminStatus(req.user.id)
-
-
-            if (results == true) {
-                req.session.is_admin = true
-            }
+		try {
 
             
 
-            req.session.userId = req.user.id
-
-            req.session.save(() => {
-                return res.redirect(`admin/${req.session.userId}/edit`)
-            })
-
-        } catch (err) {
-            console.error(err)
-        }
+			let results = await User.adminStatus(req.user.id)
 
 
-    },
-    forgotForm(req, res) {
+			if (results == true) {
+				req.session.is_admin = true
+			}
 
-        return res.render('user/forgot-password')
-    },
-    async forgot(req, res) {
+            
+
+			req.session.userId = req.user.id
+
+			req.session.save(() => {
+				return res.redirect(`admin/${req.session.userId}/edit`)
+			})
+
+		} catch (err) {
+			console.error(err)
+		}
 
 
-        try {
+	},
+	forgotForm(req, res) {
 
-            const user = req.user
-            const token = crypto.randomBytes(20).toString("hex")
+		return res.render('user/forgot-password')
+	},
+	async forgot(req, res) {
 
-            let now = new Date()
-            now = now.setHours(now.getHours() + 1)
 
-            await User.newUpdate(user.id, {
-                reset_token: token,
-                reset_token_expires: now
-            })
+		try {
 
-            await mailer.sendMail({
-                to: user.email,
-                from: 'no-reply@foodfy.com.br',
-                subject: 'Recuperação de Senha',
-                html: `<h2>Perdeu a chave?</h2>
+			const user = req.user
+			const token = crypto.randomBytes(20).toString('hex')
+
+			let now = new Date()
+			now = now.setHours(now.getHours() + 1)
+
+			await User.newUpdate(user.id, {
+				reset_token: token,
+				reset_token_expires: now
+			})
+
+			await mailer.sendMail({
+				to: user.email,
+				from: 'no-reply@foodfy.com.br',
+				subject: 'Recuperação de Senha',
+				html: `<h2>Perdeu a chave?</h2>
                 <p>Não se preocupe, clique no link abaixo para recuperar sua senha</p>
                 <p> <a href='localhost:5000/users/password-reset?token=${token}' target="_blank"> RECUPERAR SENHA</a>  </p>
                 `
-            })
+			})
 
-            return res.render('user/forgot-password', {
-                success: 'Sucesso! Verifique seu email'
-            })
-
-
-
-        } catch (err) {
-            return res.render('user/forgot-password', {
-                error: 'Erro inesperado. Tente novamente'
-            })
-        }
+			return res.render('user/forgot-password', {
+				success: 'Sucesso! Verifique seu email'
+			})
 
 
 
-    },
-    resetForm(req, res) {
-        return res.render('user/password-reset', { token: req.query.token })
-    },
-    async reset(req, res) {
-        const user = req.user
-        const { password, token } = req.body
+		} catch (err) {
+			return res.render('user/forgot-password', {
+				error: 'Erro inesperado. Tente novamente'
+			})
+		}
 
-        try {
 
-            const newPassword = await hash(password, 8)
-            await User.newUpdate(user.id, {
-                password: newPassword,
-                reset_token: '',
-                reset_token_expires: ''
 
-            })
-            return res.render('user/login', {
-                user: req.body,
-                success: "Senha Atualizada! Faça o seu login"
-            })
+	},
+	resetForm(req, res) {
+		return res.render('user/password-reset', { token: req.query.token })
+	},
+	async reset(req, res) {
+		const user = req.user
+		const { password, token } = req.body
 
-        } catch (err) {
-            console.error(err)
-            return res.render('user/password-reset', {
-                user: req.body,
-                token,
-                error: 'Erro inesperado. Tente novamente'
-            })
-        }
-    }
+		try {
+
+			const newPassword = await hash(password, 8)
+			await User.newUpdate(user.id, {
+				password: newPassword,
+				reset_token: '',
+				reset_token_expires: ''
+
+			})
+			return res.render('user/login', {
+				user: req.body,
+				success: 'Senha Atualizada! Faça o seu login'
+			})
+
+		} catch (err) {
+			console.error(err)
+			return res.render('user/password-reset', {
+				user: req.body,
+				token,
+				error: 'Erro inesperado. Tente novamente'
+			})
+		}
+	}
 }

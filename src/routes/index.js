@@ -14,11 +14,11 @@ routes.use('/chefs', chefs)
 
 
 routes.get('/about', function (req, res) {
-    return res.render('recipes/about')
-});
+	return res.render('recipes/about')
+})
 
 
-routes.get("/", recipes.index); // Home
+routes.get('/', recipes.index) // Home
 
 
 

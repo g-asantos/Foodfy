@@ -4,51 +4,46 @@ const db = require('../config/db')
 
 
 const Base = {
-    init({ table }) {
-        if (!table) throw new Error('Invalid Params')
+	init({ table }) {
+		if (!table) throw new Error('Invalid Params')
 
 
-        this.table = table
+		this.table = table
 
-        return this
-    },
-    async create(fields) {
-        try {
+		return this
+	},
+	async create(fields) {
+		try {
 
-            let keys = [],
-                values = []
-
-
-
-
-            Object.keys(fields).map(key => {
-
-
-                keys.push(key)
-                values.push(`'${fields[key]}'`)
+			let keys = [],
+				values = []
 
 
 
-            })
 
-            const query = `INSERT INTO ${this.table} (${keys.join(',')})
+			Object.keys(fields).map(key => {
+
+
+				keys.push(key)
+				values.push(`'${fields[key]}'`)
+
+
+
+			})
+
+			const query = `INSERT INTO ${this.table} (${keys.join(',')})
             VALUES (${values.join(',')})
             RETURNING id`
             
 
-            return db.query(query)
+			return db.query(query)
 
 
 
 
-        } catch (err) {
-            console.error(err)
-        }
-
-
-
-
-
+		} catch (err) {
+			console.error(err)
+		}
 
 
 
@@ -57,41 +52,46 @@ const Base = {
 
 
 
-    },
-    update(id, fields) {
-
-
-        try {
-
-            let update = []
 
 
 
-            Object.keys(fields).map(key => {
 
 
-                const line = `${key} = '${fields[key]}'`
-                update.push(line)
+	},
+	update(id, fields) {
 
-            })
 
-            let query = `UPDATE ${this.table} SET
+		try {
+
+			let update = []
+
+
+
+			Object.keys(fields).map(key => {
+
+
+				const line = `${key} = '${fields[key]}'`
+				update.push(line)
+
+			})
+
+			let query = `UPDATE ${this.table} SET
             ${update.join(',')} WHERE id = ${id}`
 
             
-            return db.query(query)
+			return db.query(query)
 
 
 
 
-        } catch (err) {
-            console.error(err)
-        }
+		} catch (err) {
+			console.error(err)
+		}
 
 
 
 
-    },
+	},
 
 
 }

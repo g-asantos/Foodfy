@@ -1,38 +1,38 @@
 
 
 function addIngredient() {
-    const ingredients = document.querySelector("#ingredients");
-    const fieldContainer = document.querySelectorAll(".ingredient");
+	const ingredients = document.querySelector('#ingredients')
+	const fieldContainer = document.querySelectorAll('.ingredient')
   
-    // Realiza um clone do último ingrediente adicionado
-    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
+	// Realiza um clone do último ingrediente adicionado
+	const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
   
-    // Não adiciona um novo input se o último tem um valor vazio
-    if (newField.children[0].value == "") return false;
+	// Não adiciona um novo input se o último tem um valor vazio
+	if (newField.children[0].value == '') return false
   
-    // Deixa o valor do input vazio
-    newField.children[0].value = "";
-    ingredients.appendChild(newField);
-  }
+	// Deixa o valor do input vazio
+	newField.children[0].value = ''
+	ingredients.appendChild(newField)
+}
   
   
   
-  function addPrep() {
-    const preps = document.querySelector("#preparation");
-    const fieldContainer = document.querySelectorAll(".prepare");
+function addPrep() {
+	const preps = document.querySelector('#preparation')
+	const fieldContainer = document.querySelectorAll('.prepare')
   
-    // Realiza um clone do último ingrediente adicionado
-    const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true);
-  
-    // Não adiciona um novo input se o último tem um valor vazio
-    if (newField.children[0].value == "") return false;
-  
-    // Deixa o valor do input vazio
-    newField.children[0].value = "";
-    preps.appendChild(newField);
-  }
+	// Realiza um clone do último ingrediente adicionado
+	const newField = fieldContainer[fieldContainer.length - 1].cloneNode(true)
 
-document.querySelector(".add-ingredient").addEventListener("click", addIngredient);
+	// Não adiciona um novo input se o último tem um valor vazio
+	if (newField.children[0].value == '') return false
+  
+	// Deixa o valor do input vazio
+	newField.children[0].value = ''
+	preps.appendChild(newField)
+}
+
+document.querySelector('.add-ingredient').addEventListener('click', addIngredient)
 
 
-document.querySelector(".add-step").addEventListener("click", addPrep);
+document.querySelector('.add-step').addEventListener('click', addPrep)

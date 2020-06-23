@@ -37,7 +37,7 @@ routes.get('/admin/recipes', isLogged, UserController.recipes)
 routes.get('/admin/register', onlyAdmins,  UserController.registerForm)
 routes.get('/admin/:id/edit' , SessionValidator.edit , UserController.editForm)
 routes.post('/register', onlyAdmins,  UserValidator.post, UserController.post) //Cadastrar um usuário
-routes.put('/admin/users', SessionValidator.edit, UserController.put) // Editar um usuário
+routes.put('/admin/users', UserController.put) // Editar um usuário
 routes.delete('/admin/users/:id', onlyAdmins, deleteSelf, UserController.delete) // Deletar um usuário
 
 
