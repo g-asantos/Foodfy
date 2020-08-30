@@ -46,7 +46,7 @@ npm start
 ```
 
 
-### Test using Mailtrap
+### Try it using Mailtrap
 
 Mailtrap is a Fake SMTP server for email testing from the development & staging environments without spamming your real users.
 
