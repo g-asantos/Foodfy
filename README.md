@@ -1,3 +1,9 @@
+
+<p align="center">
+   <img src="./assets/chef.png" width="200"/>
+</p>
+
+
 # Foodfy
 
 Foodfy is an recipe website where you can create your own recipes. 
